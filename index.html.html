@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Chuleta 🌶️</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fdf8ef;--paper2:#f7f1e0;--dot:#c8b49a;
+  --red:#c0392b;--blue:#1a5276;--green:#1a6b3c;--orange:#c87020;
+  --ink:#1c1208;--pencil:#6d5d4e;--mut:#9a8a78;
+  --hl:#fef08a;--hl2:#fce4ec;--hl3:#dbeafe;--hl4:#dcfce7;
+  --border:#d4c8b0;--margin:#e8a0a0;
+  --card:#fff;--sh:0 2px 8px rgba(0,0,0,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--paper);
+  background-image:radial-gradient(circle,var(--dot) .8px,transparent .8px);
+  background-size:20px 20px;
+  color:var(--ink);max-width:430px;margin:0 auto;padding-bottom:76px;min-height:100vh;
+}
+
+/* ── SPIRAL BINDING ── */
+.spiral-bar{
+  background:linear-gradient(180deg,#b8860b 0%,#d4a853 40%,#b8860b 100%);
+  padding:0 12px;display:flex;align-items:center;justify-content:space-around;height:22px;
+  position:sticky;top:0;z-index:300;
+}
+.sp-hole{
+  width:16px;height:16px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#6b4c0a,#1a1208);
+  border:1.5px solid #8a6020;flex-shrink:0;
+}
+
+/* ── HEADER ── */
+.hdr{
+  background:var(--paper2);
+  border-bottom:2px solid var(--border);
+  padding:12px 16px 0;
+  position:sticky;top:22px;z-index:200;
+  box-shadow:0 3px 12px rgba(0,0,0,.1);
+}
+.hr1{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.logo{
+  font-family:'Caveat',cursive;font-size:28px;font-weight:700;
+  color:var(--red);flex:1;letter-spacing:-0.5px;
+  text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:3px;
+}
+.logo small{
+  font-family:'Caveat',cursive;font-size:14px;font-weight:400;
+  color:var(--pencil);text-decoration:none;display:block;line-height:1;margin-top:-4px;
+}
+.lsw{display:flex;gap:3px;background:rgba(0,0,0,.06);border-radius:20px;padding:3px}
+.lbtn{
+  padding:4px 10px;border-radius:16px;border:none;cursor:pointer;
+  font-family:'Caveat',cursive;font-size:14px;font-weight:600;
+  background:transparent;color:var(--pencil);transition:all .2s;
+}
+.lbtn.on{background:var(--red);color:#fff}
+
+/* search */
+.swrap{position:relative;margin-bottom:10px}
+.sinp{
+  width:100%;padding:9px 36px 9px 36px;border-radius:22px;
+  border:1.5px solid var(--border);background:#fff;
+  color:var(--ink);font-size:13px;font-family:'DM Sans',sans-serif;outline:none;
+}
+.sinp:focus{border-color:var(--red)}
+.s-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:15px;pointer-events:none}
+.sclear{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--mut);font-size:16px;cursor:pointer;display:none}
+
+/* tabs */
+.tabs{display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{
+  padding:8px 16px;border:none;cursor:pointer;font-family:'Caveat',cursive;
+  font-size:16px;font-weight:600;white-space:nowrap;
+  background:transparent;color:var(--pencil);transition:all .2s;
+  border-bottom:3px solid transparent;
+}
+.tab.on{color:var(--red);border-bottom-color:var(--red)}
+
+/* ── CONTENT ── */
+.cnt{padding:14px}
+.page{display:none}
+.page.on{display:block}
+
+/* sub-nav for Часи */
+.subnav{
+  display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;
+  padding:4px 0 10px;margin-bottom:4px;
+}
+.subnav::-webkit-scrollbar{display:none}
+.snbtn{
+  padding:5px 14px;border-radius:20px;border:1.5px solid var(--border);
+  cursor:pointer;font-family:'Caveat',cursive;font-size:15px;font-weight:600;
+  white-space:nowrap;background:var(--card);color:var(--pencil);transition:all .2s;
+}
+.snbtn.on{background:var(--red);color:#fff;border-color:var(--red)}
+
+/* section label */
+.sec-label{
+  font-family:'Caveat',cursive;font-size:20px;font-weight:700;color:var(--red);
+  border-bottom:2px solid var(--margin);padding-bottom:4px;margin:16px 0 10px;
+  display:flex;align-items:center;gap:6px;
+}
+.sec-label:first-child{margin-top:0}
+
+/* ── CARD ── */
+.card{
+  background:var(--card);border-radius:4px 12px 12px 4px;
+  margin-bottom:10px;box-shadow:var(--sh);
+  border-left:4px solid var(--margin);overflow:hidden;
+  position:relative;
+}
+.card::before{
+  content:'';position:absolute;top:0;left:0;right:0;
+  height:100%;
+  background-image:repeating-linear-gradient(transparent,transparent 27px,rgba(180,210,240,.2) 27px,rgba(180,210,240,.2) 28px);
+  pointer-events:none;
+}
+.ch{padding:13px 14px 13px 16px;cursor:pointer;display:flex;align-items:center;gap:10px;position:relative;z-index:1}
+.ci{font-size:18px;flex-shrink:0}
+.cinfo{flex:1;min-width:0}
+.ctit{font-family:'Caveat',cursive;font-size:19px;font-weight:700;color:var(--red);line-height:1.2}
+.cwhen{font-size:12px;color:var(--pencil);margin-top:2px;line-height:1.4;font-style:italic}
+.cprev{font-size:12px;color:var(--blue);margin-top:3px;font-family:'Caveat',cursive;font-size:15px}
+.chev{color:var(--mut);font-size:14px;flex-shrink:0;transition:transform .3s}
+.card.open .chev{transform:rotate(180deg)}
+.cb{display:none;border-top:1px dashed var(--border);padding:14px 16px;position:relative;z-index:1}
+.card.open .cb{display:block}
+
+/* ── LABELS / TAGS ── */
+.lbl{
+  font-family:'Caveat',cursive;font-size:15px;font-weight:700;color:var(--pencil);
+  margin:12px 0 6px;display:flex;align-items:center;gap:4px;
+}
+.lbl:first-child{margin-top:0}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:4px}
+.tag{
+  padding:3px 11px;border-radius:3px;font-size:13px;font-weight:500;
+  font-family:'Caveat',cursive;font-size:15px;
+}
+.tag.r{background:var(--hl);color:var(--ink);border-bottom:2px solid #e6c800}
+.tag.b{background:var(--hl3);color:var(--blue);border-bottom:2px solid #93c5fd}
+.tag.g{background:var(--hl4);color:var(--green);border-bottom:2px solid #86efac}
+.tag.p{background:var(--hl2);color:#9d174d;border-bottom:2px solid #f9a8d4}
+
+/* ── RULE ── */
+.rule{
+  background:#fffef5;border:1px dashed var(--border);
+  border-radius:8px;padding:10px 13px;margin:8px 0;
+  font-size:13px;line-height:1.6;
+}
+.rule b{color:var(--red);font-family:'Caveat',cursive;font-size:15px}
+.rule em{color:var(--blue)}
+.tr2{color:var(--pencil);font-size:12px}
+.warn{
+  background:#fff8f0;border-left:3px solid var(--orange);
+  border-radius:0 8px 8px 0;padding:9px 12px;margin:8px 0;font-size:13px;
+}
+.warn b{color:var(--orange)}
+
+/* ── TABLE ── */
+.ct{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}
+.ct th{
+  text-align:left;padding:5px 8px;font-size:11px;font-weight:700;
+  color:var(--mut);text-transform:uppercase;letter-spacing:.4px;
+  border-bottom:2px solid var(--border);
+}
+.ct td{padding:7px 8px;border-bottom:1px dashed var(--border);vertical-align:top}
+.ct tr:last-child td{border-bottom:none}
+.pr{color:var(--mut);font-size:12px;font-style:italic}
+.hi{color:var(--red);font-weight:700}
+.hib{color:var(--blue);font-weight:700}
+
+/* ── GRID ── */
+.mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin:8px 0}
+.mc-t{font-family:'Caveat',cursive;font-size:14px;font-weight:700;color:var(--pencil);margin-bottom:4px;border-bottom:1px solid var(--border);padding-bottom:2px}
+.mc div{font-size:13px;padding:1px 0}
+.mc .h2{color:var(--red);font-weight:600}
+
+/* ── IRREG GRID ── */
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0}
+.ic{background:var(--paper2);border-radius:8px;padding:8px 10px;border:1px solid var(--border)}
+.ic .iv{font-family:'Caveat',cursive;font-size:16px;font-weight:700;color:var(--red)}
+.ic .is{font-size:12px;color:var(--blue)}
+.ic .ie{font-size:11px;color:var(--mut);margin-top:2px}
+
+/* ── VERSUS ── */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
+.vb{border-radius:8px;padding:10px 12px}
+.vb.s{background:#fff5f5;border:1.5px solid #fca5a5}
+.vb.e{background:#f0fdf4;border:1.5px solid #86efac}
+.vb-t{font-family:'Caveat',cursive;font-size:17px;font-weight:700;margin-bottom:5px}
+.vb.s .vb-t{color:var(--red)}.vb.e .vb-t{color:var(--green)}
+.vb ul{list-style:none}
+.vb ul li{font-size:12px;padding:2px 0}
+.vb ul li::before{content:'→ ';color:var(--mut);font-size:11px}
+
+.div{height:1px;background:repeating-linear-gradient(to right,var(--border) 0,var(--border) 5px,transparent 5px,transparent 10px);margin:12px 0}
+
+/* ── INLINE ROW ── */
+.il{display:flex;align-items:baseline;gap:8px;padding:7px 0;border-bottom:1px dashed var(--border);font-size:13px}
+.il:last-child{border-bottom:none}
+.iw{font-family:'Caveat',cursive;font-size:17px;font-weight:700;color:var(--red);min-width:72px}
+.im{flex:1}
+.ix{font-size:11px;color:var(--mut);font-style:italic}
+
+/* ── VOCAB ── */
+.vcat-bar{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:4px 0 10px}
+.vcat-bar::-webkit-scrollbar{display:none}
+.vcbtn{
+  padding:5px 13px;border-radius:20px;border:1.5px solid var(--border);
+  cursor:pointer;font-family:'Caveat',cursive;font-size:15px;font-weight:600;
+  white-space:nowrap;background:var(--card);color:var(--pencil);transition:all .2s;
+  box-shadow:0 1px 4px rgba(0,0,0,.06);
+}
+.vcbtn.on{background:var(--red);color:#fff;border-color:var(--red)}
+.vcount{font-family:'Caveat',cursive;font-size:15px;color:var(--pencil);margin-bottom:8px}
+.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.vc{
+  background:var(--card);border-radius:8px;padding:11px 12px;
+  box-shadow:var(--sh);cursor:pointer;transition:transform .15s;
+  border-top:3px solid var(--hl);position:relative;
+}
+.vc:active{transform:scale(.97)}
+.vc.pink{border-top-color:#f9a8d4}
+.vc.blue{border-top-color:#93c5fd}
+.vc.green{border-top-color:#86efac}
+.vc.purple{border-top-color:#c4b5fd}
+.vc .ves{font-family:'Caveat',cursive;font-size:17px;font-weight:600;color:var(--ink)}
+.vc .vuk{font-size:12px;color:var(--pencil);margin-top:3px}
+.vc .ven{font-size:11px;color:var(--blue);margin-top:2px;display:none;font-style:italic}
+.vc.flip .ven{display:block}
+
+/* ── BOTTOM NAV ── */
+.bnav{
+  position:fixed;bottom:0;left:50%;transform:translateX(-50%);
+  width:100%;max-width:430px;background:var(--paper2);
+  border-top:2px solid var(--border);display:flex;z-index:300;
+}
+.bb{
+  flex:1;display:flex;flex-direction:column;align-items:center;
+  padding:7px 2px 6px;border:none;background:none;cursor:pointer;
+  color:var(--mut);font-family:'Caveat',cursive;font-size:13px;gap:2px;transition:color .2s;
+}
+.bb .ni{font-size:20px}
+.bb.on{color:var(--red)}
+
+/* search highlight */
+mark{background:var(--hl);border-radius:2px;padding:0 1px}
+.no-res{text-align:center;padding:40px 20px;color:var(--mut);font-family:'Caveat',cursive;font-size:18px}
+
+
+/* ── SUB-ACCORDION ── */
+.sacc{border:1.5px dashed var(--border);border-radius:10px;margin-top:12px;overflow:hidden;background:var(--paper)}
+.sh{padding:10px 13px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:var(--paper2)}
+.sh-title{font-family:'Caveat',cursive;font-size:17px;font-weight:700;color:var(--orange)}
+.sch{color:var(--mut);font-size:13px;transition:transform .3s}
+.sacc.open .sch{transform:rotate(180deg)}
+.sb{display:none;padding:12px 13px;border-top:1px dashed var(--border)}
+.sacc.open .sb{display:block}
+.sc-tag{display:inline-block;background:var(--hl);border-radius:3px;padding:2px 8px;font-family:'Caveat',cursive;font-size:14px;font-weight:600;margin:3px 3px 3px 0;border-bottom:2px solid #e6c800}
+
+/* tense mode cards */
+.card[data-mode]{display:none}
+.card[data-mode].visible{display:block}
+</style>
+</head>
+<body>
+
+<!-- SPIRAL -->
+<div class="spiral-bar" id="spiralBar"></div>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hr1">
+    <div class="logo">🌶️ Chuleta<small data-uk="іспанська шпаргалка" data-en="Spanish cheatsheet" data-es="chuleta de español">іспанська шпаргалка</small></div>
+    <div class="lsw">
+      <button class="lbtn on" onclick="setLang('uk')">УКР</button>
+      <button class="lbtn" onclick="setLang('en')">ENG</button>
+      <button class="lbtn" onclick="setLang('es')">ESP</button>
+    </div>
+  </div>
+  <div class="swrap">
+    <span class="s-icon">🔍</span>
+    <input class="sinp" id="si" placeholder="fue, haya, хліб, gustar..." oninput="doSearch(this.value)">
+    <button class="sclear" id="sc" onclick="clrS()">✕</button>
+  </div>
+  <div class="tabs">
+    <button class="tab on" onclick="setTab('times')" data-uk="⏰ Часи" data-en="⏰ Tenses" data-es="⏰ Tiempos">⏰ Часи</button>
+    <button class="tab" onclick="setTab('verbs')" data-uk="⚡ Дієслова" data-en="⚡ Verbs" data-es="⚡ Verbos">⚡ Дієслова</button>
+    <button class="tab" onclick="setTab('gram')" data-uk="🔤 Граматика" data-en="🔤 Grammar" data-es="🔤 Gramática">🔤 Граматика</button>
+    <button class="tab" onclick="setTab('vocab')" data-uk="📖 Словник" data-en="📖 Vocab" data-es="📖 Vocabulario">📖 Словник</button>
+  </div>
+</div>
+
+<div class="cnt">
+<div id="page-search" class="page"><div id="sres"></div></div>
+
+<!-- ═══════════ ЧАСИ ═══════════ -->
+<div id="page-times" class="page on">
+  <div class="subnav">
+    <button class="snbtn on" onclick="setMode('ind')">Indicativo</button>
+    <button class="snbtn" onclick="setMode('cond')">Condicional</button>
+    <button class="snbtn" onclick="setMode('subj')">Subjuntivo</button>
+    <button class="snbtn" onclick="setMode('imp')">Imperativo</button>
+  </div>
+
+  <!-- INDICATIVO -->
+  <div class="card" data-mode="ind" data-k="presente теперішній hablo hablas habla hablamos habláis hablan como comes come vivo vives viven ahora siempre">
+    <div class="ch" onclick="tog(this)"><div class="ci">🟢</div><div class="cinfo"><div class="ctit">Presente</div><div class="cwhen" data-uk="зараз, завжди, факти, регулярні дії" data-en="now, always, facts, habits" data-es="ahora, siempre, hechos">зараз, завжди, факти</div><div class="cprev">habl<b>o</b> · com<b>o</b> · viv<b>o</b></div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <div class="tags"><span class="tag r">ahora</span><span class="tag r">hoy</span><span class="tag r">siempre</span><span class="tag r">nunca</span><span class="tag r">todos los días</span><span class="tag r">normalmente</span><span class="tag r">a veces</span></div>
+      <table class="ct"><tr><th data-uk="Особа" data-en="Person" data-es="Persona">Особа</th><th>-AR</th><th>-ER</th><th>-IR</th></tr>
+      <tr><td class="pr">yo</td><td>habl<span class="hi">o</span></td><td>com<span class="hi">o</span></td><td>viv<span class="hi">o</span></td></tr>
+      <tr><td class="pr">tú</td><td>habl<span class="hi">as</span></td><td>com<span class="hi">es</span></td><td>viv<span class="hi">es</span></td></tr>
+      <tr><td class="pr">él/ella</td><td>habl<span class="hi">a</span></td><td>com<span class="hi">e</span></td><td>viv<span class="hi">e</span></td></tr>
+      <tr><td class="pr">nosotros</td><td>habl<span class="hi">amos</span></td><td>com<span class="hi">emos</span></td><td>viv<span class="hi">imos</span></td></tr>
+      <tr><td class="pr">vosotros</td><td>habl<span class="hi">áis</span></td><td>com<span class="hi">éis</span></td><td>viv<span class="hi">ís</span></td></tr>
+      <tr><td class="pr">ellos</td><td>habl<span class="hi">an</span></td><td>com<span class="hi">en</span></td><td>viv<span class="hi">en</span></td></tr></table>
+
+      <div class="sacc" id="sacc-pres">
+        <div class="sh" onclick="togSub(this)"><span class="sh-title" data-uk="⚡ Нерегулярні в Presente" data-en="⚡ Irregulars in Presente" data-es="⚡ Irregulares en Presente">⚡ Нерегулярні в Presente</span><span class="sch">▾</span></div>
+        <div class="sb">
+          <div class="lbl" data-uk="E → IE (усі особи крім nosotros/vosotros)" data-en="E → IE (all except nosotros/vosotros)" data-es="E → IE (todas menos nosotros/vosotros)">E → IE</div>
+          <table class="ct"><tr><th data-uk="Дієслово" data-en="Verb" data-es="Verbo">Дієслово</th><th>yo</th><th>tú</th><th>él</th><th>nos.</th><th>ellos</th></tr>
+          <tr><td>querer</td><td><span class="hi">quiero</span></td><td>quieres</td><td>quiere</td><td>queremos</td><td>quieren</td></tr>
+          <tr><td>pensar</td><td><span class="hi">pienso</span></td><td>piensas</td><td>piensa</td><td>pensamos</td><td>piensan</td></tr>
+          <tr><td>entender</td><td><span class="hi">entiendo</span></td><td>entiendes</td><td>entiende</td><td>entendemos</td><td>entienden</td></tr>
+          <tr><td>empezar</td><td><span class="hi">empiezo</span></td><td>empiezas</td><td>empieza</td><td>empezamos</td><td>empiezan</td></tr>
+          <tr><td>preferir</td><td><span class="hi">prefiero</span></td><td>prefieres</td><td>prefiere</td><td>preferimos</td><td>prefieren</td></tr>
+          <tr><td>tener*</td><td><span class="hi">tengo</span></td><td>tienes</td><td>tiene</td><td>tenemos</td><td>tienen</td></tr>
+          <tr><td>venir*</td><td><span class="hi">vengo</span></td><td>vienes</td><td>viene</td><td>venimos</td><td>vienen</td></tr></table>
+          <div class="note" data-uk="* також нерегулярна yo: tengo/vengo" data-en="* also irregular yo: tengo/vengo" data-es="* también irregular en yo: tengo/vengo">* також нерегулярна yo: tengo/vengo</div>
+          <div class="lbl" style="margin-top:10px" data-uk="O → UE" data-en="O → UE" data-es="O → UE">O → UE</div>
+          <table class="ct"><tr><th data-uk="Дієслово" data-en="Verb" data-es="Verbo">Дієслово</th><th>yo</th><th>tú</th><th>él</th><th>nos.</th><th>ellos</th></tr>
+          <tr><td>poder</td><td><span class="hi">puedo</span></td><td>puedes</td><td>puede</td><td>podemos</td><td>pueden</td></tr>
+          <tr><td>volver</td><td><span class="hi">vuelvo</span></td><td>vuelves</td><td>vuelve</td><td>volvemos</td><td>vuelven</td></tr>
+          <tr><td>dormir</td><td><span class="hi">duermo</span></td><td>duermes</td><td>duerme</td><td>dormimos</td><td>duermen</td></tr>
+          <tr><td>encontrar</td><td><span class="hi">encuentro</span></td><td>encuentras</td><td>encuentra</td><td>encontramos</td><td>encuentran</td></tr>
+          <tr><td>recordar</td><td><span class="hi">recuerdo</span></td><td>recuerdas</td><td>recuerda</td><td>recordamos</td><td>recuerdan</td></tr></table>
+          <div class="lbl" style="margin-top:10px" data-uk="E → I (тільки -IR дієслова)" data-en="E → I (-IR verbs only)" data-es="E → I (solo verbos -IR)">E → I (тільки -IR)</div>
+          <table class="ct"><tr><th data-uk="Дієслово" data-en="Verb" data-es="Verbo">Дієслово</th><th>yo</th><th>tú</th><th>él</th><th>nos.</th><th>ellos</th></tr>
+          <tr><td>pedir</td><td><span class="hi">pido</span></td><td>pides</td><td>pide</td><td>pedimos</td><td>piden</td></tr>
+          <tr><td>servir</td><td><span class="hi">sirvo</span></td><td>sirves</td><td>sirve</td><td>servimos</td><td>sirven</td></tr>
+          <tr><td>seguir</td><td><span class="hi">sigo</span></td><td>sigues</td><td>sigue</td><td>seguimos</td><td>siguen</td></tr>
+          <tr><td>vestirse</td><td><span class="hi">me visto</span></td><td>te vistes</td><td>se viste</td><td>nos vestimos</td><td>se visten</td></tr></table>
+          <div class="lbl" style="margin-top:10px" data-uk="Повністю нерегулярні" data-en="Fully irregular" data-es="Totalmente irregulares">Повністю нерегулярні</div>
+          <table class="ct"><tr><th data-uk="Дієслово" data-en="Verb" data-es="Verbo">Дієслово</th><th>yo</th><th>tú</th><th>él</th><th>nos.</th><th>vos.</th><th>ellos</th></tr>
+          <tr><td><b>ser</b></td><td><span class="hi">soy</span></td><td><span class="hi">eres</span></td><td><span class="hi">es</span></td><td><span class="hi">somos</span></td><td>sois</td><td><span class="hi">son</span></td></tr>
+          <tr><td><b>ir</b></td><td><span class="hi">voy</span></td><td><span class="hi">vas</span></td><td><span class="hi">va</span></td><td><span class="hi">vamos</span></td><td>vais</td><td><span class="hi">van</span></td></tr>
+          <tr><td><b>estar</b></td><td><span class="hi">estoy</span></td><td>estás</td><td>está</td><td>estamos</td><td>estáis</td><td>están</td></tr>
+          <tr><td><b>haber</b></td><td><span class="hi">he</span></td><td>has</td><td>ha</td><td>hemos</td><td>habéis</td><td>han</td></tr>
+          <tr><td><b>saber</b></td><td><span class="hi">sé</span></td><td>sabes</td><td>sabe</td><td>sabemos</td><td>sabéis</td><td>saben</td></tr></table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-mode="ind" data-k="perfecto he has ha hemos habéis han hablado comido abierto escrito hecho visto vuelto puesto dicho roto hoy esta semana ya todavía">
+    <div class="ch" onclick="tog(this)"><div class="ci">🔵</div><div class="cinfo"><div class="ctit">Pretérito Perfecto</div><div class="cwhen" data-uk="дія пов'язана з теперішнім, сьогодні, вже/ще ні" data-en="linked to present, today, already/not yet" data-es="ligado al presente, hoy">дія пов'язана з теперішнім</div><div class="cprev">he/has/ha + <b>-ado/-ido</b></div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <div class="tags"><span class="tag b">hoy</span><span class="tag b">esta semana</span><span class="tag b">este año</span><span class="tag b">ya</span><span class="tag b">todavía no</span><span class="tag b">alguna vez</span><span class="tag b">nunca</span><span class="tag b">recientemente</span></div>
+      <div class="rule" data-r="1"><b>haber</b> + participio (-ado / -ido)<br><em>He comido pizza hoy.</em> <span class="tr2" data-uk="— Я сьогодні їв піцу." data-en="— I ate pizza today." data-es="— He comido pizza hoy.">— Я сьогодні їв піцу.</span></div>
+      <div class="mg">
+        <div class="mc"><div class="mc-t">Haber</div><div>he</div><div>has</div><div>ha</div><div>hemos</div><div>habéis</div><div>han</div></div>
+        <div class="mc"><div class="mc-t">Participios ✗</div><div>abrir→<span class="h2">abierto</span></div><div>escribir→<span class="h2">escrito</span></div><div>hacer→<span class="h2">hecho</span></div><div>ver→<span class="h2">visto</span></div><div>volver→<span class="h2">vuelto</span></div><div>poner→<span class="h2">puesto</span></div><div>decir→<span class="h2">dicho</span></div><div>romper→<span class="h2">roto</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-mode="ind" data-k="indefinido hablé hablaste habló hablaron comí comiste comió fui fuiste fue fueron anduv estuv hic pus quis sup tuv vin ayer anoche el año pasado entonces practiqué llegué empecé pidió durmió conduj dij">
+    <div class="ch" onclick="tog(this)"><div class="ci">🔴</div><div class="cinfo"><div class="ctit">Pretérito Indefinido</div><div class="cwhen" data-uk="завершена дія, конкретний момент" data-en="completed action, specific moment" data-es="acción completa, momento específico">завершена дія, конкретний момент</div><div class="cprev">hablé · fui · puse · pidió</div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <div class="tags"><span class="tag r">ayer</span><span class="tag r">anoche</span><span class="tag r">el lunes</span><span class="tag r">el año pasado</span><span class="tag r">en 2020</span><span class="tag r">hace un año</span><span class="tag r">entonces</span><span class="tag r">de repente</span></div>
+      <table class="ct"><tr><th data-uk="Особа" data-en="Person" data-es="Persona">Особа</th><th>-AR</th><th>-ER/-IR</th></tr>
+      <tr><td class="pr">yo</td><td>habl<span class="hi">é</span></td><td>com<span class="hi">í</span></td></tr>
+      <tr><td class="pr">tú</td><td>habl<span class="hi">aste</span></td><td>com<span class="hi">iste</span></td></tr>
+      <tr><td class="pr">él</td><td>habl<span class="hi">ó</span></td><td>com<span class="hi">ió</span></td></tr>
+      <tr><td class="pr">nosotros</td><td>habl<span class="hi">amos</span></td><td>com<span class="hi">imos</span></td></tr>
+      <tr><td class="pr">vosotros</td><td>habl<span class="hi">asteis</span></td><td>com<span class="hi">isteis</span></td></tr>
+      <tr><td class="pr">ellos</td><td>habl<span class="hi">aron</span></td><td>com<span class="hi">ieron</span></td></tr></table>
+      <div class="sacc">
+        <div class="sh" onclick="togSub(this)"><span class="sh-title" data-uk="⚡ Нерегулярні в Indefinido" data-en="⚡ Irregulars in Indefinido" data-es="⚡ Irregulares en Indefinido">⚡ Нерегулярні в Indefinido</span><span class="sch">▾</span></div>
+        <div class="sb">
+                <div class="lbl" data-uk="⚡ Нерегулярні основи" data-en="⚡ Irregular stems" data-es="⚡ Raíces irregulares">⚡ Нерегулярні основи</div>
+      <div class="rule" data-r="2">Закінчення без наголосу: <b>-e / -iste / -o / -imos / -isteis / -ieron</b></div>
+      <div class="ig">
+        <div class="ic"><div class="iv">andar</div><div class="is">anduv-</div></div><div class="ic"><div class="iv">estar</div><div class="is">estuv-</div></div>
+        <div class="ic"><div class="iv">tener</div><div class="is">tuv-</div></div><div class="ic"><div class="iv">hacer</div><div class="is">hic-/hiz-</div></div>
+        <div class="ic"><div class="iv">poder</div><div class="is">pud-</div></div><div class="ic"><div class="iv">poner</div><div class="is">pus-</div></div>
+        <div class="ic"><div class="iv">saber</div><div class="is">sup-</div></div><div class="ic"><div class="iv">querer</div><div class="is">quis-</div></div>
+        <div class="ic"><div class="iv">venir</div><div class="is">vin-</div></div><div class="ic"><div class="iv">decir</div><div class="is">dij- <span style="color:var(--orange)">→ -eron!</span></div></div>
+      </div>
+      <div class="lbl" data-uk="IR / SER / DAR / VER" data-en="IR / SER / DAR / VER" data-es="IR / SER / DAR / VER">IR / SER / DAR / VER</div>
+      <div class="warn" data-r="3"><b>⚠️</b> IR і SER — однакові форми!</div>
+      <table class="ct"><tr><th></th><th>IR/SER</th><th>DAR</th><th>VER</th></tr>
+      <tr><td class="pr">yo</td><td><span class="hi">fui</span></td><td><span class="hi">di</span></td><td><span class="hi">vi</span></td></tr>
+      <tr><td class="pr">tú</td><td>fuiste</td><td>diste</td><td>viste</td></tr>
+      <tr><td class="pr">él</td><td>fue</td><td>dio</td><td>vio</td></tr>
+      <tr><td class="pr">nosotros</td><td>fuimos</td><td>dimos</td><td>vimos</td></tr>
+      <tr><td class="pr">ellos</td><td>fueron</td><td>dieron</td><td>vieron</td></tr></table>
+      <div class="lbl" data-uk="Зміна кореня (тільки 3-я особа)" data-en="Stem change (3rd person only)" data-es="Cambio de raíz (solo 3ª persona)">Зміна кореня (тільки 3-я особа)</div>
+      <table class="ct"><tr><th data-uk="Тип" data-en="Type" data-es="Tipo">Тип</th><th data-uk="Дієслово" data-en="Verb" data-es="Verbo">Дієслово</th><th>él/ella</th><th>ellos</th></tr>
+      <tr><td>e→i</td><td>pedir</td><td><span class="hi">pidió</span></td><td><span class="hi">pidieron</span></td></tr>
+      <tr><td>e→i</td><td>mentir</td><td>mintió</td><td>mintieron</td></tr>
+      <tr><td>o→u</td><td>dormir</td><td><span class="hi">durmió</span></td><td><span class="hi">durmieron</span></td></tr></table>
+      <div class="lbl" data-uk="Орфографічні зміни (yo)" data-en="Spelling changes (yo form)" data-es="Cambios ortográficos (yo)">Орфографічні зміни (yo)</div>
+      <table class="ct">
+      <tr><td style="font-family:Caveat;font-size:15px">-car</td><td>c→<span class="hi">qu</span></td><td>practicar→<span class="hi">practiqué</span></td></tr>
+      <tr><td style="font-family:Caveat;font-size:15px">-gar</td><td>g→<span class="hi">gu</span></td><td>llegar→<span class="hi">llegué</span></td></tr>
+      <tr><td style="font-family:Caveat;font-size:15px">-zar</td><td>z→<span class="hi">c</span></td><td>empezar→<span class="hi">empecé</span></td></tr></table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-mode="ind" data-k="imperfecto hablaba hablabas hablaba hablábamos hablaban comía comías comíamos era eras éramos iba ibas íbamos veía antes siempre cuando niño">
+    <div class="ch" onclick="tog(this)"><div class="ci">🟠</div><div class="cinfo"><div class="ctit">Pretérito Imperfecto</div><div class="cwhen" data-uk="звичка/опис у минулому, фон для Indefinido" data-en="past habit/description, background" data-es="hábito, descripción pasada">звичка / опис у минулому</div><div class="cprev">hablaba · comía · era</div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <div class="tags"><span class="tag p">antes</span><span class="tag p">siempre (pasado)</span><span class="tag p">cuando era niño</span><span class="tag p">todos los días</span><span class="tag p">normalmente</span></div>
+      <table class="ct"><tr><th data-uk="Особа" data-en="Person" data-es="Persona">Особа</th><th>-AR</th><th>-ER/-IR</th></tr>
+      <tr><td class="pr">yo</td><td>habl<span class="hi">aba</span></td><td>com<span class="hi">ía</span></td></tr>
+      <tr><td class="pr">tú</td><td>habl<span class="hi">abas</span></td><td>com<span class="hi">ías</span></td></tr>
+      <tr><td class="pr">él</td><td>habl<span class="hi">aba</span></td><td>com<span class="hi">ía</span></td></tr>
+      <tr><td class="pr">nosotros</td><td>habl<span class="hi">ábamos</span></td><td>com<span class="hi">íamos</span></td></tr>
+      <tr><td class="pr">vosotros</td><td>habl<span class="hi">abais</span></td><td>com<span class="hi">íais</span></td></tr>
+      <tr><td class="pr">ellos</td><td>habl<span class="hi">aban</span></td><td>com<span class="hi">ían</span></td></tr></table>
+      <div class="sacc">
+        <div class="sh" onclick="togSub(this)"><span class="sh-title" data-uk="⚡ Нерегулярні в Imperfecto" data-en="⚡ Irregulars in Imperfecto" data-es="⚡ Irregulares en Imperfecto">⚡ Нерегулярні в Imperfecto</span><span class="sch">▾</span></div>
+        <div class="sb">      <div class="lbl" data-uk="Тільки 3 нерегулярних" data-en="Only 3 irregular verbs" data-es="Solo 3 irregulares">Тільки 3 нерегулярних</div>
+      <div class="mg">
+        <div class="mc"><div class="mc-t">SER</div><div>era</div><div>eras</div><div>era</div><div>éramos</div><div>erais</div><div>eran</div></div>
+        <div class="mc"><div class="mc-t">IR</div><div>iba</div><div>ibas</div><div>iba</div><div>íbamos</div><div>ibais</div><div>iban</div></div>
+        <div class="mc"><div class="mc-t">VER</div><div>veía</div><div>veías</div><div>veía</div><div>veíamos</div><div>veíais</div><div>veían</div></div>
+      </div>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-mode="ind" data-k="pluscuamperfecto había habías habíamos habían ya antes cuando llegué había salido передминулий">
+    <div class="ch" onclick="tog(this)"><div class="ci">⚫</div><div class="cinfo"><div class="ctit">Pluscuamperfecto</div><div class="cwhen" data-uk="дія відбулась ДО іншої минулої дії" data-en="action before another past action" data-es="anterior a otra acción pasada">дія ДО іншої минулої дії</div><div class="cprev">había + participio</div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <div class="tags"><span class="tag b">ya (вже)</span><span class="tag b">cuando llegué</span><span class="tag b">nunca antes</span><span class="tag b">antes de que</span></div>
+      <div class="rule" data-r="4"><em>Cuando llegué, ella ya <b>había salido</b>.</em><br><span class="tr2" data-uk="— Коли я прийшов, вона вже пішла." data-en="— When I arrived, she had already left." data-es="— Cuando llegué, ya había salido.">— Коли я прийшов, вона вже пішла.</span></div>
+      <div class="mg"><div class="mc"><div class="mc-t">había + participio</div><div>había</div><div>habías</div><div>había</div><div>habíamos</div><div>habíais</div><div>habían</div></div></div>
+    </div>
+  </div>
+
+  <div class="card" data-mode="ind" data-k="futuro hablaré hablarás hablará hablaremos hablaréis hablarán haré harás tendrá vendrá podrá sabrá saldrá querré diré mañana próximo año pronto">
+    <div class="ch" onclick="tog(this)"><div class="ci">🟡</div><div class="cinfo"><div class="ctit">Futuro Simple</div><div class="cwhen" data-uk="майбутні дії, передбачення, здогадки" data-en="future actions, predictions, guesses" data-es="acciones futuras, predicciones">майбутні дії, передбачення</div><div class="cprev">hablar<b>é</b> · tendr<b>é</b></div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <div class="tags"><span class="tag g">mañana</span><span class="tag g">el próximo año</span><span class="tag g">pronto</span><span class="tag g">dentro de poco</span><span class="tag g">algún día</span></div>
+      <div class="rule" data-r="5">Інфінітив + <b>-é / -ás / -á / -emos / -éis / -án</b></div>
+      <div class="sacc">
+        <div class="sh" onclick="togSub(this)"><span class="sh-title" data-uk="⚡ Нерегулярні в Futuro" data-en="⚡ Irregulars in Futuro" data-es="⚡ Irregulares en Futuro">⚡ Нерегулярні в Futuro</span><span class="sch">▾</span></div>
+        <div class="sb">      <div class="lbl" data-uk="Нерегулярні основи" data-en="Irregular stems" data-es="Raíces irregulares">Нерегулярні основи</div>
+      <div class="ig">
+        <div class="ic"><div class="iv">haber</div><div class="is">habr-</div></div><div class="ic"><div class="iv">tener</div><div class="is">tendr-</div></div>
+        <div class="ic"><div class="iv">venir</div><div class="is">vendr-</div></div><div class="ic"><div class="iv">poner</div><div class="is">pondr-</div></div>
+        <div class="ic"><div class="iv">poder</div><div class="is">podr-</div></div><div class="ic"><div class="iv">saber</div><div class="is">sabr-</div></div>
+        <div class="ic"><div class="iv">salir</div><div class="is">saldr-</div></div><div class="ic"><div class="iv">querer</div><div class="is">querr-</div></div>
+        <div class="ic"><div class="iv">decir</div><div class="is">dir-</div></div><div class="ic"><div class="iv">hacer</div><div class="is">har-</div></div>
+      </div>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-mode="ind" data-k="futuro perfecto habré habrás habrá habremos habréis habrán para entonces cuando llegues ya habrá terminado">
+    <div class="ch" onclick="tog(this)"><div class="ci">🔆</div><div class="cinfo"><div class="ctit">Futuro Perfecto</div><div class="cwhen" data-uk="дія завершиться ДО певного моменту в майбутньому" data-en="completed before a future moment" data-es="completado antes de un momento futuro">дія завершиться ДО певного моменту</div><div class="cprev">habré + participio</div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <div class="tags"><span class="tag g">para entonces</span><span class="tag g">cuando llegues</span><span class="tag g">ya habrá...</span><span class="tag g">para el lunes</span></div>
+      <div class="rule" data-r="6"><em>Cuando llegues, ya <b>habré terminado</b>.</em><br><span class="tr2" data-uk="— Коли прийдеш, я вже закінчу." data-en="— When you arrive, I will have finished." data-es="— Cuando llegues, ya habré terminado.">— Коли прийдеш, вже закінчу.</span></div>
+      <div class="mg"><div class="mc"><div class="mc-t">habré + participio</div><div>habré</div><div>habrás</div><div>habrá</div><div>habremos</div><div>habréis</div><div>habrán</div></div></div>
+    </div>
+  </div>
+
+  <!-- CONDICIONAL -->
+  <div class="card" data-mode="cond" data-k="condicional hablaría hablarías hablaría hablaríamos hablarían tendría vendría pondría podría diría haría si tuviera me gustaría quisiera podría habría hablado">
+    <div class="ch" onclick="tog(this)"><div class="ci">💭</div><div class="cinfo"><div class="ctit">Condicional Simple</div><div class="cwhen" data-uk="«б/би», ввічливе прохання, нереальна умова" data-en="would, polite request, unreal condition" data-es="condicional, cortesía, condición irreal">«б/би», ввічливість, нереальна умова</div><div class="cprev">hablar<b>ía</b> · tendr<b>ía</b></div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <div class="rule" data-r="7">Інфінітив + <b>-ía / -ías / -ía / -íamos / -íais / -ían</b><br>Ті ж нерег. основи що й у Futuro: tendr-, vendr-, pondr-...</div>
+      <div class="rule" data-r="8"><em>Si tuviera dinero, <b>viajaría</b>.</em> <span class="tr2" data-uk="— Якби мала гроші, подорожувала б." data-en="— If I had money, I would travel." data-es="— Si tuviera dinero, viajaría.">— Якби мала гроші.</span><br><em>¿<b>Podrías</b> ayudarme?</em> <span class="tr2" data-uk="— Чи не міг би ти допомогти?" data-en="— Could you help me?" data-es="— petición cortés">— ввічливе прохання</span></div>
+      <div class="mg"><div class="mc"><div class="mc-t">Condicional Simple</div><div>hablaría</div><div>hablarías</div><div>hablaría</div><div>hablaríamos</div><div>hablaríais</div><div>hablarían</div></div></div>
+      <div class="sacc">
+        <div class="sh" onclick="togSub(this)"><span class="sh-title" data-uk="⚡ Нерегулярні в Condicional" data-en="⚡ Irregulars in Condicional" data-es="⚡ Irregulares en Condicional">⚡ Нерегулярні в Condicional</span><span class="sch">▾</span></div>
+        <div class="sb">
+          <div class="rule" data-r="7b" style="margin-top:0">Ті ж основи що й у <b>Futuro</b> + закінчення <b>-ía/-ías/-ía...</b></div>
+          <div class="ig">
+            <div class="ic"><div class="iv">tener</div><div class="is">tendr<span class="hi">ía</span></div></div>
+            <div class="ic"><div class="iv">venir</div><div class="is">vendr<span class="hi">ía</span></div></div>
+            <div class="ic"><div class="iv">poder</div><div class="is">podr<span class="hi">ía</span></div></div>
+            <div class="ic"><div class="iv">poner</div><div class="is">pondr<span class="hi">ía</span></div></div>
+            <div class="ic"><div class="iv">saber</div><div class="is">sabr<span class="hi">ía</span></div></div>
+            <div class="ic"><div class="iv">salir</div><div class="is">saldr<span class="hi">ía</span></div></div>
+            <div class="ic"><div class="iv">querer</div><div class="is">querr<span class="hi">ía</span></div></div>
+            <div class="ic"><div class="iv">haber</div><div class="is">habr<span class="hi">ía</span></div></div>
+            <div class="ic"><div class="iv">decir</div><div class="is">dir<span class="hi">ía</span></div></div>
+            <div class="ic"><div class="iv">hacer</div><div class="is">har<span class="hi">ía</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-mode="cond" data-k="condicional compuesto habría habrías habría habríamos habrían hablado comido si hubiera estudiado habría aprobado">
+    <div class="ch" onclick="tog(this)"><div class="ci">💭</div><div class="cinfo"><div class="ctit">Condicional Compuesto</div><div class="cwhen" data-uk="те що могло б статись але не сталось" data-en="what could have happened but didn't" data-es="lo que podría haber pasado pero no pasó">могло б статись, але не сталось</div><div class="cprev">habría + participio</div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <div class="rule" data-r="9"><em>Si <b>hubiera</b> estudiado, <b>habría aprobado</b>.</em><br><span class="tr2" data-uk="— Якби вчила, склала б." data-en="— If I had studied, I would have passed." data-es="— Si hubiera estudiado, habría aprobado.">— Якби вчила, склала б.</span></div>
+      <div class="mg"><div class="mc"><div class="mc-t">habría + participio</div><div>habría</div><div>habrías</div><div>habría</div><div>habríamos</div><div>habríais</div><div>habrían</div></div></div>
+    </div>
+  </div>
+
+  <!-- SUBJUNTIVO -->
+  <div class="card" data-mode="subj" data-k="subjuntivo presente hable hables hable hablemos habléis hablen coma comas comamos vaya vayas vayan sea seas seamos sepa vea haya que ojalá espero para que cuando quizás tal vez aunque">
+    <div class="ch" onclick="tog(this)"><div class="ci">🌀</div><div class="cinfo"><div class="ctit">Presente de Subjuntivo</div><div class="cwhen" data-uk="бажання, сумнів, емоція, рекомендація" data-en="wish, doubt, emotion, recommendation" data-es="deseo, duda, emoción, recomendación">бажання, сумнів, емоція</div><div class="cprev">habl<b>e</b> · com<b>a</b> · vay<b>a</b></div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <div class="rule" data-r="10">Основа = yo presente без -o + нові закінчення<br>AR → <b>-E</b> | ER/IR → <b>-A</b></div>
+      <table class="ct"><tr><th data-uk="Особа" data-en="Person" data-es="Persona">Особа</th><th>-AR → -E</th><th>-ER/-IR → -A</th></tr>
+      <tr><td class="pr">yo</td><td>habl<span class="hi">e</span></td><td>com<span class="hi">a</span></td></tr>
+      <tr><td class="pr">tú</td><td>habl<span class="hi">es</span></td><td>com<span class="hi">as</span></td></tr>
+      <tr><td class="pr">él</td><td>habl<span class="hi">e</span></td><td>com<span class="hi">a</span></td></tr>
+      <tr><td class="pr">nosotros</td><td>habl<span class="hi">emos</span></td><td>com<span class="hi">amos</span></td></tr>
+      <tr><td class="pr">vosotros</td><td>habl<span class="hi">éis</span></td><td>com<span class="hi">áis</span></td></tr>
+      <tr><td class="pr">ellos</td><td>habl<span class="hi">en</span></td><td>com<span class="hi">an</span></td></tr></table>
+      <div class="sacc">
+        <div class="sh" onclick="togSub(this)"><span class="sh-title" data-uk="⚡ Нерегулярні в Subj. Presente" data-en="⚡ Irregulars in Subj. Presente" data-es="⚡ Irregulares en Subj. Presente">⚡ Нерегулярні в Subj. Presente</span><span class="sch">▾</span></div>
+        <div class="sb">      <div class="lbl" data-uk="Нерегулярні" data-en="Irregular verbs" data-es="Irregulares">Нерегулярні</div>
+      <div class="ig">
+        <div class="ic"><div class="iv">ir</div><div class="is">vaya/vayas/vaya<br>vayamos/vayáis/vayan</div></div>
+        <div class="ic"><div class="iv">ser</div><div class="is">sea/seas/sea<br>seamos/seáis/sean</div></div>
+        <div class="ic"><div class="iv">saber</div><div class="is">sepa/sepas...</div></div>
+        <div class="ic"><div class="iv">haber</div><div class="is">haya/hayas...</div></div>
+        <div class="ic"><div class="iv">estar</div><div class="is">esté/estés...</div></div>
+        <div class="ic"><div class="iv">dar</div><div class="is">dé/des/dé...</div></div>
+      </div>
+        </div>
+      </div>
+      <div class="div"></div>
+      <div class="lbl" data-uk="🎯 Тригери" data-en="🎯 Triggers" data-es="🎯 Desencadenadores">🎯 Тригери</div>
+      <div class="tags">
+        <span class="tag r">querer que</span><span class="tag r">esperar que</span><span class="tag r">pedir que</span>
+        <span class="tag b">es importante que</span><span class="tag b">es posible que</span>
+        <span class="tag g">ojalá</span><span class="tag g">tal vez</span><span class="tag g">quizás</span>
+        <span class="tag p">para que</span><span class="tag p">cuando (майбутнє!)</span><span class="tag p">antes de que</span><span class="tag p">aunque (сумнів)</span>
+      </div>
+      <div class="warn" data-r="11"><b>⚠️ cuando + майбутнє → суб'юнтів!</b><br><em>Cuando <b>llegues</b>, llámame.</em> <span class="tr2">— Коли приїдеш (субхунтів)</span><br><em>No sé cuándo llega.</em> <span class="tr2">— не знаю коли (індікатів)</span></div>
+    </div>
+  </div>
+
+  <div class="card" data-mode="subj" data-k="imperfecto subjuntivo hablara hablaras hablara habláramos hablaran comiera comieras fuera fueras estuviera tuviera viniera pudiera dijera si pudiera si fuera">
+    <div class="ch" onclick="tog(this)"><div class="ci">🌀</div><div class="cinfo"><div class="ctit">Imperfecto de Subjuntivo</div><div class="cwhen" data-uk="минуле суб'юнтіво, нереальна умова Si..." data-en="past subjunctive, unreal Si..." data-es="subjuntivo pasado, Si irreal">минуле суб'юнтіво, Si…</div><div class="cprev">hablara · comiera · fuera</div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <div class="rule" data-r="12">Основа = 3 ос. мн. Indefinido без -ron<br>hablaron → <b>hablara-</b> | comieron → <b>comiera-</b></div>
+      <table class="ct"><tr><th data-uk="Особа" data-en="Person" data-es="Persona">Особа</th><th>-ara</th><th>-iera</th></tr>
+      <tr><td class="pr">yo</td><td>habl<span class="hi">ara</span></td><td>com<span class="hi">iera</span></td></tr>
+      <tr><td class="pr">tú</td><td>habl<span class="hi">aras</span></td><td>com<span class="hi">ieras</span></td></tr>
+      <tr><td class="pr">él</td><td>habl<span class="hi">ara</span></td><td>com<span class="hi">iera</span></td></tr>
+      <tr><td class="pr">nosotros</td><td>habl<span class="hi">áramos</span></td><td>com<span class="hi">iéramos</span></td></tr>
+      <tr><td class="pr">ellos</td><td>habl<span class="hi">aran</span></td><td>com<span class="hi">ieran</span></td></tr></table>
+      <div class="ig">
+        <div class="ic"><div class="iv">ir/ser</div><div class="is">fuera/fueras...</div></div>
+        <div class="ic"><div class="iv">estar</div><div class="is">estuviera...</div></div>
+        <div class="ic"><div class="iv">tener</div><div class="is">tuviera...</div></div>
+        <div class="ic"><div class="iv">poder</div><div class="is">pudiera...</div></div>
+        <div class="ic"><div class="iv">hacer</div><div class="is">hiciera...</div></div>
+        <div class="ic"><div class="iv">decir</div><div class="is">dijera...</div></div>
+      </div>
+      <div class="sacc">
+        <div class="sh" onclick="togSub(this)"><span class="sh-title" data-uk="⚡ Нерегулярні в Subj. Imperfecto" data-en="⚡ Irregulars in Subj. Imperfecto" data-es="⚡ Irregulares en Subj. Imperfecto">⚡ Нерегулярні в Subj. Imperfecto</span><span class="sch">▾</span></div>
+        <div class="sb">
+          <div class="rule" data-r="12b" style="margin-top:0"><span data-uk="Основа = 3 ос. мн. Indefinido без -ron" data-en="Stem = 3rd pl. Indefinido without -ron" data-es="Raíz = 3ª pl. Indefinido sin -ron">Основа = 3 ос. мн. Indefinido без -ron</span></div>
+          <table class="ct"><tr><th data-uk="Дієслово" data-en="Verb" data-es="Verbo">Дієслово</th><th data-uk="Основа" data-en="Stem" data-es="Raíz">Основа</th><th>yo / él</th><th>nosotros</th></tr>
+          <tr><td><b>ser/ir</b></td><td>fue<b>ron</b>→<span class="hi">fuera-</span></td><td>fuera</td><td>fuéramos</td></tr>
+          <tr><td><b>estar</b></td><td>estuv<b>ieron</b>→<span class="hi">estuviera-</span></td><td>estuviera</td><td>estuviéramos</td></tr>
+          <tr><td><b>tener</b></td><td>tuv<b>ieron</b>→<span class="hi">tuviera-</span></td><td>tuviera</td><td>tuviéramos</td></tr>
+          <tr><td><b>poder</b></td><td>pud<b>ieron</b>→<span class="hi">pudiera-</span></td><td>pudiera</td><td>pudiéramos</td></tr>
+          <tr><td><b>hacer</b></td><td>hic<b>ieron</b>→<span class="hi">hiciera-</span></td><td>hiciera</td><td>hiciéramos</td></tr>
+          <tr><td><b>decir</b></td><td>dij<b>eron</b>→<span class="hi">dijera-</span></td><td>dijera</td><td>dijéramos</td></tr>
+          <tr><td><b>venir</b></td><td>vin<b>ieron</b>→<span class="hi">viniera-</span></td><td>viniera</td><td>viniéramos</td></tr>
+          <tr><td><b>poner</b></td><td>pus<b>ieron</b>→<span class="hi">pusiera-</span></td><td>pusiera</td><td>pusiéramos</td></tr>
+          <tr><td><b>saber</b></td><td>sup<b>ieron</b>→<span class="hi">supiera-</span></td><td>supiera</td><td>supiéramos</td></tr>
+          <tr><td><b>querer</b></td><td>quis<b>ieron</b>→<span class="hi">quisiera-</span></td><td>quisiera</td><td>quisiéramos</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-mode="subj" data-k="perfecto subjuntivo haya hablado hayas comido haya vivido hayamos hayáis hayan pluscuamperfecto subjuntivo hubiera hubieras ojalá haya llegado si hubiera">
+    <div class="ch" onclick="tog(this)"><div class="ci">🌀</div><div class="cinfo"><div class="ctit">Perfecto + Pluscuamp. Subjuntivo</div><div class="cwhen" data-uk="суб'юнтіво завершених дій" data-en="subjunctive of completed actions" data-es="subjuntivo de acciones completadas">суб'юнтіво завершених дій</div><div class="cprev">haya hablado · hubiera salido</div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <div class="mg">
+        <div class="mc"><div class="mc-t">Perfecto Subj.</div><div>haya</div><div>hayas</div><div>haya</div><div>hayamos</div><div>hayáis</div><div>hayan</div><div style="font-size:11px;color:var(--mut)">+ participio</div></div>
+        <div class="mc"><div class="mc-t">Pluscuamp. Subj.</div><div>hubiera</div><div>hubieras</div><div>hubiera</div><div>hubiéramos</div><div>hubierais</div><div>hubieran</div><div style="font-size:11px;color:var(--mut)">+ participio</div></div>
+      </div>
+      <div class="rule" data-r="13"><em>Ojalá <b>haya llegado</b> a tiempo.</em> <span class="tr2" data-uk="— Хай вже приїхав вчасно." data-en="— I hope he has arrived." data-es="— Ojalá haya llegado.">— Хай вчасно.</span><br><em>Si <b>hubiera estudiado</b>, habría aprobado.</em> <span class="tr2" data-uk="— Якби вчила, склала б." data-en="— If I had studied, would have passed." data-es="— Si hubiera estudiado, habría aprobado.">— Якби вчила.</span></div>
+    </div>
+  </div>
+
+  <!-- IMPERATIVO -->
+  <div class="card" data-mode="imp" data-k="imperativo habla come vive haz ten pon di sal ven sé ve no hables no comas наказовий прохання порада">
+    <div class="ch" onclick="tog(this)"><div class="ci">📢</div><div class="cinfo"><div class="ctit">Imperativo</div><div class="cwhen" data-uk="наказ, прохання, порада — говориш комусь ЩО РОБИТИ" data-en="command, request, advice" data-es="orden, petición, consejo">наказ, прохання, порада</div><div class="cprev">habla · haz · ven · no hables</div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <div class="rule" data-r="14"><b>tú (+):</b> = él/ella Presente → habl<span class="hi">a</span> · com<span class="hi">e</span> · viv<span class="hi">e</span></div>
+      <div class="lbl" data-uk="Нерегулярні tú (+)" data-en="Irregular tú (+)" data-es="Irregulares tú (+)">Нерегулярні tú (+)</div>
+      <div class="ig">
+        <div class="ic"><div class="iv">ser</div><div class="is">sé</div></div><div class="ic"><div class="iv">ir</div><div class="is">ve</div></div>
+        <div class="ic"><div class="iv">tener</div><div class="is">ten</div></div><div class="ic"><div class="iv">hacer</div><div class="is">haz</div></div>
+        <div class="ic"><div class="iv">poner</div><div class="is">pon</div></div><div class="ic"><div class="iv">decir</div><div class="is">di</div></div>
+        <div class="ic"><div class="iv">salir</div><div class="is">sal</div></div><div class="ic"><div class="iv">venir</div><div class="is">ven</div></div>
+      </div>
+      <div class="rule" data-r="15" style="margin-top:10px"><b>tú (–):</b> no + Presente Subjuntivo<br>no habl<span class="hi">es</span> · no com<span class="hi">as</span></div>
+      <table class="ct"><tr><th data-uk="Особа" data-en="Person" data-es="Persona">Особа</th><th>+</th><th>–</th></tr>
+      <tr><td class="pr">tú</td><td>habla</td><td>no hables</td></tr>
+      <tr><td class="pr">usted</td><td>hable</td><td>no hable</td></tr>
+      <tr><td class="pr">vosotros</td><td>hablad</td><td>no habléis</td></tr>
+      <tr><td class="pr">ustedes</td><td>hablen</td><td>no hablen</td></tr></table>
+    </div>
+  </div>
+
+</div><!-- /times -->
+
+<!-- ═══════════ ДІЄСЛОВА ═══════════ -->
+<div id="page-verbs" class="page">
+
+  <div class="card" data-k="reflexivos me levanto me lavo me ducho me visto me llamo me despierto levantarse ducharse vestirse llamarse acostarse sentarse quedarse irse ponerse me te se nos os">
+    <div class="ch" onclick="tog(this)"><div class="ci">🔁</div><div class="cinfo"><div class="ctit">Verbos Reflexivos</div><div class="cwhen" data-uk="дія спрямована на себе" data-en="action on oneself" data-es="acción sobre uno mismo">дія спрямована на себе</div><div class="cprev">me levanto · te duchas · se viste</div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <div class="rule" data-r="16"><b>Структура:</b> займенник + дієслово<br><em>Me voy a <b>duchar</b>.</em> = <em>Voy a <b>ducharme</b>.</em></div>
+      <table class="ct"><tr><th data-uk="Особа" data-en="Person" data-es="Persona">Особа</th><th data-uk="Займ." data-en="Pron." data-es="Pron.">Займ.</th><th>levantarse</th></tr>
+      <tr><td class="pr">yo</td><td><span class="hi">me</span></td><td>me levanto</td></tr>
+      <tr><td class="pr">tú</td><td><span class="hi">te</span></td><td>te levantas</td></tr>
+      <tr><td class="pr">él/ella</td><td><span class="hi">se</span></td><td>se levanta</td></tr>
+      <tr><td class="pr">nosotros</td><td><span class="hi">nos</span></td><td>nos levantamos</td></tr>
+      <tr><td class="pr">vosotros</td><td><span class="hi">os</span></td><td>os levantáis</td></tr>
+      <tr><td class="pr">ellos</td><td><span class="hi">se</span></td><td>se levantan</td></tr></table>
+      <div class="ig" style="margin-top:10px">
+        <div class="ic"><div class="iv">levantarse</div><div class="is" data-uk="вставати" data-en="get up" data-es="levantarse">вставати</div></div>
+        <div class="ic"><div class="iv">acostarse</div><div class="is" data-uk="лягати спати" data-en="go to bed" data-es="acostarse">лягати спати</div></div>
+        <div class="ic"><div class="iv">ducharse</div><div class="is" data-uk="приймати душ" data-en="shower" data-es="ducharse">душ</div></div>
+        <div class="ic"><div class="iv">vestirse</div><div class="is" data-uk="одягатися" data-en="get dressed" data-es="vestirse">одягатися</div></div>
+        <div class="ic"><div class="iv">despertarse</div><div class="is" data-uk="прокидатися" data-en="wake up" data-es="despertarse">прокидатися</div></div>
+        <div class="ic"><div class="iv">quedarse</div><div class="is" data-uk="залишатися" data-en="stay" data-es="quedarse">залишатися</div></div>
+        <div class="ic"><div class="iv">irse</div><div class="is" data-uk="іти звідси" data-en="leave" data-es="irse">іти звідси</div></div>
+        <div class="ic"><div class="iv">sentarse</div><div class="is" data-uk="сідати" data-en="sit down" data-es="sentarse">сідати</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-k="perífrasis ir a voy a vas a va a tener que tengo que hay que estar gerundio estoy hablando acabar de acabo de seguir sigo dejar de empezar a volver a">
+    <div class="ch" onclick="tog(this)"><div class="ci">🔗</div><div class="cinfo"><div class="ctit">Perífrasis verbales</div><div class="cwhen" data-uk="дієслівні конструкції: збираюся, треба, щойно..." data-en="verbal periphrases: going to, must, just did..." data-es="construcciones verbales">збираюся · треба · щойно · продовжую</div><div class="cprev">ir a · tener que · acabar de</div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <table class="ct"><tr><th data-uk="Конструкція" data-en="Structure" data-es="Construcción">Конструкція</th><th data-uk="Значення" data-en="Meaning" data-es="Significado">Значення</th><th data-uk="Приклад" data-en="Example" data-es="Ejemplo">Приклад</th></tr>
+      <tr><td><b>ir a</b> + inf</td><td><span data-uk="збираюся" data-en="going to" data-es="ir a + inf">збираюся</span></td><td><em>Voy a comer.</em></td></tr>
+      <tr><td><b>tener que</b> + inf</td><td><span data-uk="треба (особисто)" data-en="have to" data-es="tener que">треба</span></td><td><em>Tengo que estudiar.</em></td></tr>
+      <tr><td><b>hay que</b> + inf</td><td><span data-uk="треба (загально)" data-en="one must" data-es="hay que">треба (загально)</span></td><td><em>Hay que trabajar.</em></td></tr>
+      <tr><td><b>estar</b> + gerundio</td><td><span data-uk="зараз роблю" data-en="am doing" data-es="estar + gerundio">зараз роблю</span></td><td><em>Estoy comiendo.</em></td></tr>
+      <tr><td><b>acabar de</b> + inf</td><td><span data-uk="щойно зробив" data-en="just did" data-es="acabar de + inf">щойно</span></td><td><em>Acabo de llegar.</em></td></tr>
+      <tr><td><b>seguir</b> + gerundio</td><td><span data-uk="продовжую" data-en="keep doing" data-es="seguir + gerundio">продовжую</span></td><td><em>Sigo estudiando.</em></td></tr>
+      <tr><td><b>dejar de</b> + inf</td><td><span data-uk="перестати" data-en="to stop" data-es="dejar de">перестати</span></td><td><em>Dejé de fumar.</em></td></tr>
+      <tr><td><b>empezar a</b> + inf</td><td><span data-uk="почати" data-en="to start" data-es="empezar a">почати</span></td><td><em>Empecé a correr.</em></td></tr>
+      <tr><td><b>volver a</b> + inf</td><td><span data-uk="зробити знову" data-en="do again" data-es="volver a + inf">знову</span></td><td><em>Vuelvo a intentarlo.</em></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card" data-k="gerundio hablando comiendo viviendo yendo leyendo pidiendo durmiendo viniendo diciendo estar gerundio">
+    <div class="ch" onclick="tog(this)"><div class="ci">🔄</div><div class="cinfo"><div class="ctit">Gerundio</div><div class="cwhen" data-uk="-ando/-iendo: дія в процесі" data-en="-ando/-iendo: action in progress" data-es="-ando/-iendo">-ando / -iendo</div><div class="cprev">hablando · comiendo · yendo</div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <div class="rule" data-r="17">-AR → <b>-ando</b> · -ER/-IR → <b>-iendo</b></div>
+      <div class="ig">
+        <div class="ic"><div class="iv">ir</div><div class="is">yendo</div></div><div class="ic"><div class="iv">leer</div><div class="is">leyendo</div></div>
+        <div class="ic"><div class="iv">pedir</div><div class="is">pidiendo</div></div><div class="ic"><div class="iv">dormir</div><div class="is">durmiendo</div></div>
+        <div class="ic"><div class="iv">venir</div><div class="is">viniendo</div></div><div class="ic"><div class="iv">decir</div><div class="is">diciendo</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-k="pasiva se impersonal se vende se venden se habla español se come bien se puede se prohíbe se busca">
+    <div class="ch" onclick="tog(this)"><div class="ci">🪞</div><div class="cinfo"><div class="ctit">Se pasiva / Se impersonal</div><div class="cwhen" data-uk="хто робить — невідомо або не важливо" data-en="who does it is unknown/unimportant" data-es="quién lo hace es desconocido">хто робить — невідомо</div><div class="cprev">Se habla español · Se venden pisos</div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <div class="rule" data-r="18"><b>Se pasiva</b> — іменник є суб'єктом:<br><em>Se <b>vende</b> un piso.</em> <span class="tr2" data-uk="— Продається квартира." data-en="— For sale: apartment." data-es="— Se vende un piso.">— Продається квартира.</span><br><em>Se <b>venden</b> pisos.</em> <span class="tr2" data-uk="— Продаються квартири." data-en="— Apartments for sale." data-es="— Se venden pisos.">— Продаються квартири.</span></div>
+      <div class="rule" data-r="19"><b>Se impersonal</b>:<br><em>Se <b>habla</b> español aquí.</em> <span class="tr2" data-uk="— Тут розмовляють іспанською." data-en="— Spanish is spoken here." data-es="— Se habla español aquí.">— Тут розмовляють.</span></div>
+      <div class="tags"><span class="tag r">Se prohíbe fumar</span><span class="tag r">Se puede aparcar</span><span class="tag r">Se busca camarero</span><span class="tag r">¿Cómo se dice...?</span></div>
+    </div>
+  </div>
+
+  <div class="card" data-k="presente irregular yo soy voy doy estoy sé veo tengo vengo pongo hago salgo traigo digo conozco">
+    <div class="ch" onclick="tog(this)"><div class="ci">⚡</div><div class="cinfo"><div class="ctit">Presente — нерегулярні «yo»</div><div class="cwhen" data-uk="тільки 'yo' нерег., решта — нормально" data-en="only 'yo' form is irregular" data-es="solo yo es irregular">тільки «yo» нерег.</div><div class="cprev">tengo · vengo · hago · salgo</div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <div class="ig">
+        <div class="ic"><div class="iv">tener</div><div class="is">tengo</div></div><div class="ic"><div class="iv">venir</div><div class="is">vengo</div></div>
+        <div class="ic"><div class="iv">poner</div><div class="is">pongo</div></div><div class="ic"><div class="iv">hacer</div><div class="is">hago</div></div>
+        <div class="ic"><div class="iv">salir</div><div class="is">salgo</div></div><div class="ic"><div class="iv">traer</div><div class="is">traigo</div></div>
+        <div class="ic"><div class="iv">decir</div><div class="is">digo</div></div><div class="ic"><div class="iv">conocer</div><div class="is">conozco</div></div>
+        <div class="ic"><div class="iv">saber</div><div class="is">sé</div></div><div class="ic"><div class="iv">ver</div><div class="is">veo</div></div>
+        <div class="ic"><div class="iv">dar</div><div class="is">doy</div></div><div class="ic"><div class="iv">ser</div><div class="is">soy</div></div>
+        <div class="ic"><div class="iv">ir</div><div class="is">voy</div></div><div class="ic"><div class="iv">estar</div><div class="is">estoy</div></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /verbs -->
+
+<!-- ═══════════ ГРАМАТИКА ═══════════ -->
+<div id="page-gram" class="page">
+
+  <div class="card" data-k="ser estar soy eres es somos sois son estoy estás está estamos estáis están identity origin permanent temporary">
+    <div class="ch" onclick="tog(this)"><div class="ci">⚖️</div><div class="cinfo"><div class="ctit">SER vs ESTAR</div><div class="cwhen" data-uk="ser = постійне · estar = тимчасове/стан/місце" data-en="ser = permanent · estar = temp/state/location" data-es="ser = permanente · estar = temporal">ser = постійне · estar = тимчасове</div><div class="cprev">Soy ucraniana · Estoy cansada</div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <div class="vs">
+        <div class="vb s"><div class="vb-t">SER</div><ul>
+          <li data-uk="ідентичність" data-en="identity" data-es="identidad">ідентичність</li>
+          <li data-uk="походження" data-en="origin" data-es="origen">походження</li>
+          <li data-uk="матеріал" data-en="material" data-es="material">матеріал</li>
+          <li data-uk="час, дата" data-en="time, date" data-es="hora, fecha">час, дата</li>
+          <li data-uk="професія" data-en="profession" data-es="profesión">професія</li>
+          <li data-uk="постійні риси" data-en="permanent traits" data-es="características permanentes">постійні риси</li>
+        </ul></div>
+        <div class="vb e"><div class="vb-t">ESTAR</div><ul>
+          <li data-uk="місцезнаходження" data-en="location" data-es="ubicación">місце</li>
+          <li data-uk="тимчасовий стан" data-en="temporary state" data-es="estado temporal">тимч. стан</li>
+          <li data-uk="почуття" data-en="feelings" data-es="sentimientos">почуття</li>
+          <li data-uk="está + gerundio" data-en="está + gerundio" data-es="estar + gerundio">está comiendo</li>
+          <li data-uk="результат дії" data-en="result of action" data-es="resultado">результат</li>
+        </ul></div>
+      </div>
+      <div class="warn" data-r="20" style="margin-top:10px"><b>Одне слово — різне значення:</b><br><em>Es <b>aburrido</b>.</em> <span class="tr2" data-uk="— Він нудний (завжди)." data-en="— He is boring." data-es="— Él es aburrido (carácter).">— Він нудний (характеристика)</span><br><em>Está <b>aburrido</b>.</em> <span class="tr2" data-uk="— Він зараз нудьгує." data-en="— He is bored (now)." data-es="— Está aburrido (ahora).">— Йому зараз нудно (стан)</span></div>
+    </div>
+  </div>
+
+  <div class="card" data-k="gustar me gusta me gustan te gusta le gusta nos gusta encantar molestar interesar doler parecer faltar quedar">
+    <div class="ch" onclick="tog(this)"><div class="ci">💛</div><div class="cinfo"><div class="ctit">GUSTAR і подібні</div><div class="cwhen" data-uk="зворотна структура: мені подобається" data-en="reversed: me gusta = I like" data-es="estructura invertida">зворотна структура</div><div class="cprev">Me gusta · Me gustan · Te encanta</div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <div class="rule" data-r="21"><b>Структура:</b> me/te/le/nos/os/les + <b>gusta</b> (sg) / <b>gustan</b> (pl)</div>
+      <table class="ct"><tr><th data-uk="Займ." data-en="Pron." data-es="Pron.">Займ.</th><th data-uk="Кліт." data-en="Clitic" data-es="Clítico">Кліт.</th><th data-uk="Приклад" data-en="Example" data-es="Ejemplo">Приклад</th></tr>
+      <tr><td class="pr">yo</td><td><span class="hi">me</span></td><td>Me gusta el café</td></tr>
+      <tr><td class="pr">tú</td><td><span class="hi">te</span></td><td>Te gustan las películas</td></tr>
+      <tr><td class="pr">él/ella</td><td><span class="hi">le</span></td><td>Le gusta bailar</td></tr>
+      <tr><td class="pr">nosotros</td><td><span class="hi">nos</span></td><td>Nos gustan los libros</td></tr>
+      <tr><td class="pr">vosotros</td><td><span class="hi">os</span></td><td>Os gusta la música</td></tr>
+      <tr><td class="pr">ellos</td><td><span class="hi">les</span></td><td>Les gusta viajar</td></tr></table>
+      <div class="ig" style="margin-top:8px">
+        <div class="ic"><div class="iv">encantar</div><div class="is" data-uk="обожнювати" data-en="to love" data-es="encantar">обожнювати</div></div>
+        <div class="ic"><div class="iv">molestar</div><div class="is" data-uk="дратувати" data-en="to bother" data-es="molestar">дратувати</div></div>
+        <div class="ic"><div class="iv">interesar</div><div class="is" data-uk="цікавити" data-en="to interest" data-es="interesar">цікавити</div></div>
+        <div class="ic"><div class="iv">doler</div><div class="is" data-uk="боліти" data-en="to hurt" data-es="doler">боліти</div></div>
+        <div class="ic"><div class="iv">parecer</div><div class="is" data-uk="здаватись" data-en="to seem" data-es="parecer">здаватись</div></div>
+        <div class="ic"><div class="iv">faltar</div><div class="is" data-uk="не вистачати" data-en="to lack" data-es="faltar">не вистачати</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-k="artículos el la los las un una unos unas al del agua águila aula">
+    <div class="ch" onclick="tog(this)"><div class="ci">📝</div><div class="cinfo"><div class="ctit">Artículos</div><div class="cwhen" data-uk="el/la/los/las · un/una/unos/unas" data-en="the · a/an" data-es="artículos definidos e indefinidos">el/la · un/una</div><div class="cprev">el libro · una chica · al parque</div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <table class="ct"><tr><th></th><th data-uk="Означений" data-en="Definite" data-es="Definido">Означений</th><th data-uk="Неозначений" data-en="Indefinite" data-es="Indefinido">Неозначений</th></tr>
+      <tr><td>m. sg.</td><td><span class="hi">el</span> libro</td><td><span class="hi">un</span> libro</td></tr>
+      <tr><td>f. sg.</td><td><span class="hi">la</span> mesa</td><td><span class="hi">una</span> mesa</td></tr>
+      <tr><td>m. pl.</td><td><span class="hi">los</span> libros</td><td><span class="hi">unos</span> libros</td></tr>
+      <tr><td>f. pl.</td><td><span class="hi">las</span> mesas</td><td><span class="hi">unas</span> mesas</td></tr></table>
+      <div class="rule" data-r="22"><b>a + el = <span class="hi">al</span></b> · <b>de + el = <span class="hi">del</span></b><br>Voy <b>al</b> mercado. · Vengo <b>del</b> trabajo.</div>
+      <div class="warn" data-r="23"><b>el agua</b> (ж.р., але el щоб уникнути la a-)<br>el agua · el águila · el aula · el área</div>
+    </div>
+  </div>
+
+  <div class="card" data-k="interrogativos qué cuál cuáles quién quiénes dónde cuándo cómo cuánto cuánta por qué porque">
+    <div class="ch" onclick="tog(this)"><div class="ci">❓</div><div class="cinfo"><div class="ctit">Interrogativos</div><div class="cwhen" data-uk="питальні слова — qué vs cuál вічна плутанина!" data-en="question words — qué vs cuál confusion!" data-es="qué vs cuál — confusión clásica">qué vs cuál — вічна плутанина!</div><div class="cprev">¿Qué es? · ¿Cuál prefieres?</div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <table class="ct"><tr><th data-uk="Слово" data-en="Word" data-es="Palabra">Слово</th><th data-uk="Значення" data-en="Meaning" data-es="Significado">Значення</th><th data-uk="Коли?" data-en="When?" data-es="¿Cuándo?">Коли?</th></tr>
+      <tr><td><span class="hi">¿Qué?</span></td><td><span data-uk="що? / який?" data-en="what?" data-es="qué">що?</span></td><td><span data-uk="визначення або тип" data-en="definition or type" data-es="definición">визначення, тип</span></td></tr>
+      <tr><td><span class="hi">¿Cuál/es?</span></td><td><span data-uk="який? / котрий?" data-en="which?" data-es="¿cuál?">який/котрий?</span></td><td><span data-uk="вибір з варіантів" data-en="choice from options" data-es="elección entre opciones">вибір з варіантів</span></td></tr>
+      <tr><td><span class="hi">¿Quién/es?</span></td><td><span data-uk="хто?" data-en="who?" data-es="¿quién?">хто?</span></td><td></td></tr>
+      <tr><td><span class="hi">¿Dónde?</span></td><td><span data-uk="де?" data-en="where?" data-es="¿dónde?">де?</span></td><td></td></tr>
+      <tr><td><span class="hi">¿Cuándo?</span></td><td><span data-uk="коли?" data-en="when?" data-es="¿cuándo?">коли?</span></td><td></td></tr>
+      <tr><td><span class="hi">¿Cómo?</span></td><td><span data-uk="як?" data-en="how?" data-es="¿cómo?">як?</span></td><td></td></tr>
+      <tr><td><span class="hi">¿Cuánto/a?</span></td><td><span data-uk="скільки?" data-en="how much/many?" data-es="¿cuánto?">скільки?</span></td><td></td></tr>
+      <tr><td><span class="hi">¿Por qué?</span></td><td><span data-uk="чому?" data-en="why?" data-es="¿por qué?">чому?</span></td><td><span data-uk="→ porque (відповідь)" data-en="→ porque (answer)" data-es="→ porque">→ porque</span></td></tr></table>
+      <div class="warn" data-r="24"><b>Qué vs Cuál:</b><br><em>¿<b>Qué</b> es un ordenador?</em> <span class="tr2" data-uk="— Що таке комп'ютер? (визначення)" data-en="— What is a computer?" data-es="— definición">— визначення</span><br><em>¿<b>Cuál</b> es tu número?</em> <span class="tr2" data-uk="— Який твій номер? (вибір)" data-en="— What's your number?" data-es="— elección">— вибір</span></div>
+    </div>
+  </div>
+
+  <div class="card" data-k="negación no nada nadie nunca tampoco ninguno ninguna jamás double negative">
+    <div class="ch" onclick="tog(this)"><div class="ci">🚫</div><div class="cinfo"><div class="ctit">Negación</div><div class="cwhen" data-uk="подвійне заперечення — норма в іспанській!" data-en="double negative is normal in Spanish!" data-es="doble negación es normal">подвійне заперечення — норма!</div><div class="cprev">No sé nada · No hay nadie</div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <table class="ct"><tr><th data-uk="Слово" data-en="Word" data-es="Palabra">Слово</th><th data-uk="Значення" data-en="Meaning" data-es="Significado">Значення</th><th data-uk="Приклад" data-en="Example" data-es="Ejemplo">Приклад</th></tr>
+      <tr><td><span class="hi">nada</span></td><td><span data-uk="нічого" data-en="nothing" data-es="nada">нічого</span></td><td><em>No sé nada.</em></td></tr>
+      <tr><td><span class="hi">nadie</span></td><td><span data-uk="ніхто" data-en="nobody" data-es="nadie">ніхто</span></td><td><em>No hay nadie.</em></td></tr>
+      <tr><td><span class="hi">nunca</span></td><td><span data-uk="ніколи" data-en="never" data-es="nunca">ніколи</span></td><td><em>Nunca como pizza.</em></td></tr>
+      <tr><td><span class="hi">tampoco</span></td><td><span data-uk="теж ні" data-en="neither/nor" data-es="tampoco">теж ні</span></td><td><em>Yo tampoco.</em></td></tr>
+      <tr><td><span class="hi">ningún/a</span></td><td><span data-uk="жодний" data-en="no/none" data-es="ninguno">жодний</span></td><td><em>Ningún problema.</em></td></tr>
+      <tr><td><span class="hi">jamás</span></td><td><span data-uk="ніколи (сильніше)" data-en="never (stronger)" data-es="¡jamás!">ніколи!</span></td><td><em>Nunca jamás.</em></td></tr></table>
+      <div class="rule" data-r="25">Якщо заперечне слово <b>перед</b> дієсловом → no не потрібне:<br><em><b>Nunca</b> como pizza.</em> = <em>No como pizza <b>nunca</b>.</em></div>
+    </div>
+  </div>
+
+  <div class="card" data-k="comparación más menos que tan como el más la más mejor peor mayor menor bueno malo superlativo comparativo">
+    <div class="ch" onclick="tog(this)"><div class="ci">↕️</div><div class="cinfo"><div class="ctit">Порівняння</div><div class="cwhen" data-uk="більше/менше ніж · так само · найбільш" data-en="more/less than · as...as · the most" data-es="más/menos que · tan como · superlativo">más/menos que · tan como · el más</div><div class="cprev">más alto que · tan rápido como</div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <div class="rule" data-r="26"><b>más</b> + прикм. + <b>que</b> → більш ніж<br><b>menos</b> + прикм. + <b>que</b> → менш ніж<br><b>tan</b> + прикм. + <b>como</b> → так само як<br><b>el/la más</b> + прикм. (+de) → найбільш</div>
+      <table class="ct"><tr><th data-uk="Прикм." data-en="Adj." data-es="Adj.">Прикм.</th><th data-uk="Компаратив" data-en="Comparative" data-es="Comparativo">Компаратив</th><th data-uk="Суперлатив" data-en="Superlative" data-es="Superlativo">Суперлатив</th></tr>
+      <tr><td>bueno</td><td><span class="hi">mejor</span></td><td>el mejor</td></tr>
+      <tr><td>malo</td><td><span class="hi">peor</span></td><td>el peor</td></tr>
+      <tr><td>grande</td><td><span class="hi">mayor</span></td><td>el mayor</td></tr>
+      <tr><td>pequeño</td><td><span class="hi">menor</span></td><td>el menor</td></tr></table>
+    </div>
+  </div>
+
+  <div class="card" data-k="preposiciones a de en con sin para por sobre entre hasta desde contra a pie a caballo en coche en avión por para">
+    <div class="ch" onclick="tog(this)"><div class="ci">🔗</div><div class="cinfo"><div class="ctit">Прийменники + POR vs PARA</div><div class="cwhen" data-uk="значення, транспорт, ідіоми" data-en="meaning, transport, idioms" data-es="preposiciones, transporte, frases">значення, транспорт, POR vs PARA</div><div class="cprev">a pie · en coche · por/para</div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <div class="il"><span class="iw">a</span><span class="im" data-uk="до, у, на" data-en="to, at" data-es="a, hacia">до, у, на</span><span class="ix" data-uk="рух" data-en="movement" data-es="movimiento">рух</span></div>
+      <div class="il"><span class="iw">de</span><span class="im" data-uk="з, від, про" data-en="of, from" data-es="de, desde">з, від, про</span><span class="ix" data-uk="походження" data-en="origin" data-es="origen">походження</span></div>
+      <div class="il"><span class="iw">en</span><span class="im" data-uk="в, на (місце)" data-en="in, on, at" data-es="en, dentro">в, на</span><span class="ix" data-uk="місце" data-en="place" data-es="lugar">місце</span></div>
+      <div class="il"><span class="iw">con</span><span class="im" data-uk="з (кимось)" data-en="with" data-es="con">з (кимось)</span><span class="ix" data-uk="компанія" data-en="company" data-es="compañía">компанія</span></div>
+      <div class="il"><span class="iw">sin</span><span class="im" data-uk="без" data-en="without" data-es="sin">без</span><span class="ix"></span></div>
+      <div class="il"><span class="iw">sobre</span><span class="im" data-uk="про, над" data-en="about, over" data-es="sobre, encima">про, над</span><span class="ix"></span></div>
+      <div class="il"><span class="iw">entre</span><span class="im" data-uk="між" data-en="between" data-es="entre">між</span><span class="ix"></span></div>
+      <div class="il"><span class="iw">hasta</span><span class="im" data-uk="до (межа)" data-en="until, up to" data-es="hasta">до (межа)</span><span class="ix"></span></div>
+      <div class="il"><span class="iw">desde</span><span class="im" data-uk="від, з (часу/місця)" data-en="from, since" data-es="desde">від, з</span><span class="ix"></span></div>
+      <div class="div"></div>
+      <div class="lbl" data-uk="🚗 Транспорт" data-en="🚗 Transport" data-es="🚗 Transporte">🚗 Транспорт</div>
+      <div class="rule" data-r="27"><b>EN</b>: en coche · en tren · en avión · en metro · en autobús · en barco · en bici · en moto<br><b>A</b> (власна сила): <b>a pie</b> <span class="tr2">пішки</span> · <b>a caballo</b> <span class="tr2">верхи</span> · <b>a nado</b> <span class="tr2">вплав</span></div>
+      <div class="div"></div>
+      <div class="lbl" data-uk="🔀 POR vs PARA" data-en="🔀 POR vs PARA" data-es="🔀 POR vs PARA">🔀 POR vs PARA</div>
+      <div class="vs">
+        <div class="vb s"><div class="vb-t">POR</div><ul>
+          <li data-uk="причина (через що)" data-en="reason/cause" data-es="causa">причина</li>
+          <li data-uk="тривалість" data-en="duration" data-es="duración">тривалість</li>
+          <li data-uk="обмін (за скільки)" data-en="exchange" data-es="intercambio">обмін</li>
+          <li data-uk="через місце" data-en="through/along" data-es="por un lugar">через місце</li>
+          <li data-uk="пасив (ким)" data-en="passive agent" data-es="agente pasivo">пасив: ким</li>
+        </ul></div>
+        <div class="vb e"><div class="vb-t">PARA</div><ul>
+          <li data-uk="мета (для чого)" data-en="purpose" data-es="finalidad">мета: для</li>
+          <li data-uk="для кого" data-en="for whom" data-es="destinatario">для кого</li>
+          <li data-uk="дедлайн (до)" data-en="deadline (by)" data-es="plazo">дедлайн</li>
+          <li data-uk="напрямок" data-en="destination" data-es="destino">напрямок</li>
+          <li data-uk="на мою думку" data-en="in my opinion" data-es="en mi opinión">на думку</li>
+        </ul></div>
+      </div>
+      <div class="rule" data-r="28"><em>Lo hice <b>por</b> ti.</em> <span class="tr2" data-uk="— Через тебе." data-en="— Because of you." data-es="— Por ti.">— Через тебе.</span><br><em>Lo hice <b>para</b> ti.</em> <span class="tr2" data-uk="— Для тебе." data-en="— For you." data-es="— Para ti.">— Для тебе.</span></div>
+    </div>
+  </div>
+
+  <div class="card" data-k="conectores sin embargo además aunque por lo tanto es decir o sea a pesar de por ejemplo así que mientras cuando después antes">
+    <div class="ch" onclick="tog(this)"><div class="ci">🔀</div><div class="cinfo"><div class="ctit">Conectores</div><div class="cwhen" data-uk="зв'язки між ідеями в тексті" data-en="connectors between ideas" data-es="conectores del discurso">зв'язки між ідеями</div><div class="cprev">sin embargo · además · por lo tanto</div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <div class="lbl" data-uk="➕ Додавання" data-en="➕ Addition" data-es="➕ Adición">➕ Додавання</div><div class="tags"><span class="tag g">además</span><span class="tag g">también</span><span class="tag g">incluso</span></div>
+      <div class="lbl" data-uk="↔️ Протиставлення" data-en="↔️ Contrast" data-es="↔️ Contraste">↔️ Протиставлення</div><div class="tags"><span class="tag r">pero</span><span class="tag r">sin embargo</span><span class="tag r">aunque</span><span class="tag r">a pesar de</span><span class="tag r">no obstante</span></div>
+      <div class="lbl" data-uk="❓ Причина" data-en="❓ Reason/Cause" data-es="❓ Causa">❓ Причина</div><div class="tags"><span class="tag b">porque</span><span class="tag b">ya que</span><span class="tag b">puesto que</span><span class="tag b">como</span></div>
+      <div class="lbl" data-uk="➡️ Наслідок" data-en="➡️ Consequence" data-es="➡️ Consecuencia">➡️ Наслідок</div><div class="tags"><span class="tag p">por eso</span><span class="tag p">así que</span><span class="tag p">por lo tanto</span></div>
+      <div class="lbl" data-uk="⏰ Час" data-en="⏰ Time" data-es="⏰ Tiempo">⏰ Час</div><div class="tags"><span class="tag b">cuando</span><span class="tag b">mientras</span><span class="tag b">después de</span><span class="tag b">antes de</span><span class="tag b">hasta que</span></div>
+      <div class="lbl" data-uk="💡 Пояснення" data-en="💡 Explanation" data-es="💡 Explicación">💡 Пояснення</div><div class="tags"><span class="tag g">por ejemplo</span><span class="tag g">es decir</span><span class="tag g">o sea</span></div>
+    </div>
+  </div>
+
+
+  <!-- OBJETO DIRECTO / INDIRECTO -->
+  <div class="card" data-k="objeto directo indirecto pronombres me te lo la le nos os los las les lo la le se lo se la orden posición clíticos">
+    <div class="ch" onclick="tog(this)"><div class="ci">👉</div><div class="cinfo"><div class="ctit">Objeto Directo / Indirecto</div><div class="cwhen" data-uk="me/te/lo/la/le — що/кого + кому" data-en="me/te/lo/la/le — what/who + to whom" data-es="me/te/lo/la/le — OD y OI">займенники прямого і непрямого об'єкта</div><div class="cprev">lo/la (OD) · le/les (OI)</div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <table class="ct"><tr><th data-uk="Особа" data-en="Person" data-es="Persona">Особа</th><th data-uk="Непрямий (кому?)" data-en="Indirect (to whom?)" data-es="OI (¿a quién?)">OI — кому?</th><th data-uk="Прямий (кого/що?)" data-en="Direct (who/what?)" data-es="OD (¿qué/a quién?)">OD — що/кого?</th></tr>
+      <tr><td class="pr">yo</td><td><span class="hi">me</span></td><td><span class="hi">me</span></td></tr>
+      <tr><td class="pr">tú</td><td><span class="hi">te</span></td><td><span class="hi">te</span></td></tr>
+      <tr><td class="pr">él</td><td><span class="hi">le</span></td><td><span class="hi">lo</span></td></tr>
+      <tr><td class="pr">ella</td><td><span class="hi">le</span></td><td><span class="hi">la</span></td></tr>
+      <tr><td class="pr">nosotros</td><td><span class="hi">nos</span></td><td><span class="hi">nos</span></td></tr>
+      <tr><td class="pr">vosotros</td><td><span class="hi">os</span></td><td><span class="hi">os</span></td></tr>
+      <tr><td class="pr">ellos</td><td><span class="hi">les</span></td><td><span class="hi">los/las</span></td></tr></table>
+      <div class="warn" data-r="29"><b>le/les → se</b> перед lo/la/los/las!<br><em>Le doy el libro.</em> → <em>Se lo doy.</em> <span class="tr2" data-uk="— Я даю йому це." data-en="— I give it to him." data-es="">— Я даю йому це.</span></div>
+      <div class="lbl" data-uk="Порядок: OI + OD + дієслово" data-en="Order: OI + OD + verb" data-es="Orden: OI + OD + verbo">Порядок: OI + OD + дієслово</div>
+      <div class="rule" data-r="30"><em><b>Te</b> <b>lo</b> digo mañana.</em> <span class="tr2" data-uk="— Скажу тобі це завтра." data-en="— I'll tell you it tomorrow." data-es="">— Скажу тобі це завтра.</span><br><em><b>Me</b> <b>la</b> has dado.</em> <span class="tr2" data-uk="— Ти мені це дала." data-en="— You gave it to me." data-es="">— Ти мені це дала.</span></div>
+      <div class="lbl" data-uk="З інфінітивом/герундієм — після або перед" data-en="With infinitive/gerund — after or before" data-es="Con infinitivo/gerundio — después o antes">З інфінітивом — до або після</div>
+      <div class="rule" data-r="31"><em>Voy a dár<b>telo</b>.</em> = <em><b>Te lo</b> voy a dar.</em><br><em>Estoy dándó<b>selo</b>.</em> = <em><b>Se lo</b> estoy dando.</em></div>
+    </div>
+  </div>
+
+  <!-- VOZ PASIVA -->
+  <div class="card" data-k="voz pasiva activa ser participio pasiva refleja se pasiva activo pasivo por agente la casa fue construida">
+    <div class="ch" onclick="tog(this)"><div class="ci">🔃</div><div class="cinfo"><div class="ctit">Voz Pasiva vs Activa</div><div class="cwhen" data-uk="пасивний стан — акцент на об'єкті дії" data-en="passive voice — focus on the object" data-es="voz pasiva — énfasis en el objeto">пасивний стан</div><div class="cprev">fue construida · se construyó</div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <div class="vs">
+        <div class="vb s"><div class="vb-t" data-uk="Активний" data-en="Active" data-es="Activa">Активний</div><ul>
+          <li data-uk="суб'єкт виконує дію" data-en="subject performs action" data-es="sujeto realiza acción">суб'єкт діє</li>
+          <li><em>Los obreros construyeron la casa.</em></li>
+          <li data-uk="— Робітники збудували будинок." data-en="— Workers built the house." data-es="">— Робітники збудували.</li>
+        </ul></div>
+        <div class="vb e"><div class="vb-t" data-uk="Пасивний" data-en="Passive" data-es="Pasiva">Пасивний</div><ul>
+          <li data-uk="суб'єкт отримує дію" data-en="subject receives action" data-es="sujeto recibe acción">суб'єкт отримує дію</li>
+          <li><em>La casa fue construida por los obreros.</em></li>
+          <li data-uk="— Будинок був збудований." data-en="— The house was built." data-es="">— Будинок збудований.</li>
+        </ul></div>
+      </div>
+      <div class="rule" data-r="32"><b>Pasiva прямий:</b> ser (у потрібному часі) + participio<br>Participio узгоджується з підметом!<br><em>Las casas fueron <b>construidas</b>.</em></div>
+      <div class="lbl" data-uk="Pasiva refleja (se) — частіше в розмові" data-en="Pasiva refleja (se) — more common in speech" data-es="Pasiva refleja (se) — más común en el habla">Se pasiva — частіше в розмові</div>
+      <div class="rule" data-r="33"><em>Se <b>construyó</b> la casa.</em> <span class="tr2" data-uk="— Будинок збудували." data-en="— The house was built." data-es="">— sg.</span><br><em>Se <b>construyeron</b> las casas.</em> <span class="tr2" data-uk="— Будинки збудували." data-en="— The houses were built." data-es="">— pl.</span></div>
+      <div class="warn" data-r="34"><b data-uk="Коли SER, коли SE?" data-en="When SER, when SE?" data-es="¿Cuándo SER, cuándo SE?">Коли SER, коли SE?</b><br><span data-uk="ser + por → якщо важливо ХТО зробив" data-en="ser + por → if WHO did it matters" data-es="ser + por → si importa quién lo hizo">ser + por → важливо ХТО: </span><em>fue escrita por Lorca</em><br><span data-uk="se → якщо виконавець невідомий або неважливий" data-en="se → doer unknown or unimportant" data-es="se → si el autor es desconocido">se → виконавець невідомий: </span><em>se vende</em></div>
+    </div>
+  </div>
+
+  <!-- ORACIONES CONDICIONALES -->
+  <div class="card" data-k="condicionales si real posible imposible irreale si presente futuro si imperfecto subjuntivo condicional si pluscuamperfecto condicional compuesto tipo 0 1 2 3">
+    <div class="ch" onclick="tog(this)"><div class="ci">🔀</div><div class="cinfo"><div class="ctit">Oraciones Condicionales</div><div class="cwhen" data-uk="три типи умовних речень Si..." data-en="three types of Si... conditionals" data-es="tres tipos de condicionales">Si... — три типи</div><div class="cprev">Si tengo → iré · Si tuviera → iría</div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <table class="ct">
+        <tr><th data-uk="Тип" data-en="Type" data-es="Tipo">Тип</th><th>Si...</th><th data-uk="Результат" data-en="Result" data-es="Resultado">Результат</th><th data-uk="Значення" data-en="Meaning" data-es="Significado">Значення</th></tr>
+        <tr>
+          <td><span class="hi">1</span></td>
+          <td>Si + <b>Presente</b></td>
+          <td><b>Futuro</b></td>
+          <td><span data-uk="реальна умова, можлива" data-en="real, possible condition" data-es="condición real, posible">реальна / можлива</span></td>
+        </tr>
+        <tr>
+          <td><span class="hi">2</span></td>
+          <td>Si + <b>Imp. Subj.</b></td>
+          <td><b>Condicional</b></td>
+          <td><span data-uk="нереальна зараз або малоймовірна" data-en="unreal now or unlikely" data-es="irreal o poco probable">нереальна зараз</span></td>
+        </tr>
+        <tr>
+          <td><span class="hi">3</span></td>
+          <td>Si + <b>Plusc. Subj.</b></td>
+          <td><b>Cond. Comp.</b></td>
+          <td><span data-uk="нереальна в минулому" data-en="unreal in the past" data-es="irreal en el pasado">нереальна в минулому</span></td>
+        </tr>
+      </table>
+      <div class="rule" data-r="35"><b>Тип 1:</b> <em>Si <b>tengo</b> tiempo, <b>iré</b> al cine.</em><br><span class="tr2" data-uk="— Якщо матиму час, піду в кіно. (можливо)" data-en="— If I have time, I'll go to the cinema. (possible)" data-es="">— Якщо матиму час, піду. (можливо)</span></div>
+      <div class="rule" data-r="36"><b>Тип 2:</b> <em>Si <b>tuviera</b> dinero, <b>viajaría</b>.</em><br><span class="tr2" data-uk="— Якби мала гроші, подорожувала б. (нереально)" data-en="— If I had money, I would travel. (unreal now)" data-es="">— Якби мала гроші. (нереально зараз)</span></div>
+      <div class="rule" data-r="37"><b>Тип 3:</b> <em>Si <b>hubiera estudiado</b>, <b>habría aprobado</b>.</em><br><span class="tr2" data-uk="— Якби вчила, склала б. (минуле, вже не змінити)" data-en="— If I had studied, I would have passed. (past, can't change)" data-es="">— Якби вчила, склала б. (минуле)</span></div>
+    </div>
+  </div>
+
+  <!-- PRONOMBRES RELATIVOS -->
+  <div class="card" data-k="pronombres relativos que quien cual donde cuando cuyo la persona que el libro que lo que todo lo que quien lo cual">
+    <div class="ch" onclick="tog(this)"><div class="ci">🔤</div><div class="cinfo"><div class="ctit">Pronombres relativos</div><div class="cwhen" data-uk="що/який/де/хто — зв'язок частин речення" data-en="that/which/who/where — linking clauses" data-es="que/quien/cual — nexos relativos">que · quien · cual · donde</div><div class="cprev">el libro que leí · la persona quien...</div></div><span class="chev">▾</span></div>
+    <div class="cb">
+      <table class="ct"><tr><th data-uk="Слово" data-en="Word" data-es="Palabra">Слово</th><th data-uk="Вживання" data-en="Use" data-es="Uso">Вживання</th><th data-uk="Приклад" data-en="Example" data-es="Ejemplo">Приклад</th></tr>
+      <tr><td><span class="hi">que</span></td><td><span data-uk="речі і люди (найпоширеніше)" data-en="things & people (most common)" data-es="cosas y personas">речі і люди</span></td><td><em>el libro <b>que</b> leí</em></td></tr>
+      <tr><td><span class="hi">quien/es</span></td><td><span data-uk="тільки люди (після прийм.)" data-en="only people (after prep.)" data-es="solo personas">тільки люди</span></td><td><em>la persona con <b>quien</b> hablé</em></td></tr>
+      <tr><td><span class="hi">donde</span></td><td><span data-uk="місце" data-en="place" data-es="lugar">місце</span></td><td><em>el lugar <b>donde</b> vivo</em></td></tr>
+      <tr><td><span class="hi">cuando</span></td><td><span data-uk="час" data-en="time" data-es="tiempo">час</span></td><td><em>el día <b>cuando</b> llegué</em></td></tr>
+      <tr><td><span class="hi">lo que</span></td><td><span data-uk="те що (без іменника)" data-en="what (no noun before)" data-es="lo que (sin antecedente)">те що</span></td><td><em><b>Lo que</b> dices es verdad.</em></td></tr>
+      <tr><td><span class="hi">cuyo/a</span></td><td><span data-uk="чий (як прикм., узгоджується)" data-en="whose (agrees with noun)" data-es="cuyo (posesivo, concuerda)">чий (узгоджується)</span></td><td><em>el autor <b>cuya</b> novela leí</em></td></tr>
+      </table>
+    </div>
+  </div>
+
+
+  <!-- ESTILO INDIRECTO -->
+  <div class="card" data-k="estilo indirecto directo непряма мова dijo que decir contar explicar preguntar pedir tenía iría había ido fuera ese día al día siguiente hoy ayer mañana aquí allí cambio de tiempo">
+    <div class="ch" onclick="tog(this)"><div class="ci">💬</div><div class="cinfo"><div class="ctit">Estilo Indirecto</div><div class="cwhen" data-uk="він сказав що... — часи і маркери змінюються" data-en="he said that... — tenses and markers shift" data-es="dijo que... — cambios de tiempo y marcadores">він сказав що... — зміна часів</div><div class="cprev">Dijo que <b>tenía</b> hambre · iría · había ido</div></div><span class="chev">▾</span></div>
+    <div class="cb">
+
+      <div class="lbl" data-uk="⏰ Зміна часів (дієслово введення в минулому)" data-en="⏰ Tense shifts (reporting verb in past)" data-es="⏰ Cambio de tiempos (verbo introductor en pasado)">⏰ Зміна часів</div>
+      <table class="ct">
+        <tr><th data-uk="Пряма мова" data-en="Direct speech" data-es="Estilo directo">Пряма мова</th><th>→</th><th data-uk="Непряма мова" data-en="Indirect speech" data-es="Estilo indirecto">Непряма мова</th></tr>
+        <tr>
+          <td><span class="hi">Presente</span><br><span style="font-size:11px;color:var(--mut)">hablo</span></td>
+          <td>→</td>
+          <td><span class="hib">Imperfecto</span><br><span style="font-size:11px;color:var(--mut)">hablaba</span></td>
+        </tr>
+        <tr>
+          <td><span class="hi">Futuro</span><br><span style="font-size:11px;color:var(--mut)">hablaré</span></td>
+          <td>→</td>
+          <td><span class="hib">Condicional</span><br><span style="font-size:11px;color:var(--mut)">hablaría</span></td>
+        </tr>
+        <tr>
+          <td><span class="hi">Indefinido</span><br><span style="font-size:11px;color:var(--mut)">hablé</span></td>
+          <td>→</td>
+          <td><span class="hib">Pluscuamperfecto</span><br><span style="font-size:11px;color:var(--mut)">había hablado</span></td>
+        </tr>
+        <tr>
+          <td><span class="hi">Perfecto</span><br><span style="font-size:11px;color:var(--mut)">he hablado</span></td>
+          <td>→</td>
+          <td><span class="hib">Pluscuamperfecto</span><br><span style="font-size:11px;color:var(--mut)">había hablado</span></td>
+        </tr>
+        <tr>
+          <td><span class="hi">Imperfecto</span><br><span style="font-size:11px;color:var(--mut)">hablaba</span></td>
+          <td>→</td>
+          <td><span class="hib">Imperfecto</span><br><span style="font-size:11px;color:var(--mut)">hablaba (без змін)</span></td>
+        </tr>
+        <tr>
+          <td><span class="hi">Imperativo</span><br><span style="font-size:11px;color:var(--mut)">habla / ven</span></td>
+          <td>→</td>
+          <td><b>que</b> + <span class="hib">Imp. Subjuntivo</span><br><span style="font-size:11px;color:var(--mut)">que hablara / que viniera</span></td>
+        </tr>
+        <tr>
+          <td><span class="hi">Pres. Subjuntivo</span><br><span style="font-size:11px;color:var(--mut)">venga</span></td>
+          <td>→</td>
+          <td><span class="hib">Imp. Subjuntivo</span><br><span style="font-size:11px;color:var(--mut)">viniera</span></td>
+        </tr>
+      </table>
+
+      <div class="rule" data-r="38">
+        <em>"<b>Tengo</b> hambre."</em><br>
+        → Dijo que <b>tenía</b> hambre.<br>
+        <span class="tr2" data-uk="— Він сказав, що голодний." data-en="— He said he was hungry." data-es="">— Він сказав, що голодний.</span>
+      </div>
+      <div class="rule" data-r="39">
+        <em>"<b>Iré</b> mañana."</em><br>
+        → Dijo que <b>iría</b> al día siguiente.<br>
+        <span class="tr2" data-uk="— Він сказав, що прийде наступного дня." data-en="— He said he would come the next day." data-es="">— Він сказав, що прийде.</span>
+      </div>
+      <div class="rule" data-r="40">
+        <em>"<b>Ven</b> aquí."</em><br>
+        → Me dijo que <b>fuera</b> allí.<br>
+        <span class="tr2" data-uk="— Він сказав мені прийти туди." data-en="— He told me to go there." data-es="">— Він сказав мені прийти.</span>
+      </div>
+
+      <div class="lbl" data-uk="📅 Зміна маркерів часу і місця" data-en="📅 Time and place marker shifts" data-es="📅 Cambios de marcadores temporales y locales">📅 Зміна маркерів</div>
+      <table class="ct">
+        <tr><th data-uk="Пряма" data-en="Direct" data-es="Directo">Пряма</th><th>→</th><th data-uk="Непряма" data-en="Indirect" data-es="Indirecto">Непряма</th></tr>
+        <tr><td><span class="hi">hoy</span></td><td>→</td><td><span class="hib">ese día</span></td></tr>
+        <tr><td><span class="hi">ayer</span></td><td>→</td><td><span class="hib">el día anterior</span></td></tr>
+        <tr><td><span class="hi">mañana</span></td><td>→</td><td><span class="hib">al día siguiente</span></td></tr>
+        <tr><td><span class="hi">esta semana</span></td><td>→</td><td><span class="hib">esa semana</span></td></tr>
+        <tr><td><span class="hi">aquí / acá</span></td><td>→</td><td><span class="hib">allí / ahí</span></td></tr>
+        <tr><td><span class="hi">este/a</span></td><td>→</td><td><span class="hib">ese/a</span></td></tr>
+        <tr><td><span class="hi">yo / tú</span></td><td>→</td><td><span class="hib">él / yo (залежить від контексту)</span></td></tr>
+      </table>
+
+      <div class="lbl" data-uk="💬 Дієслова введення" data-en="💬 Reporting verbs" data-es="💬 Verbos de introducción">💬 Дієслова введення</div>
+      <div class="ig">
+        <div class="ic"><div class="iv">decir que</div><div class="is" data-uk="сказати що" data-en="to say that" data-es="">сказати що</div></div>
+        <div class="ic"><div class="iv">contar que</div><div class="is" data-uk="розповісти що" data-en="to tell that" data-es="">розповісти що</div></div>
+        <div class="ic"><div class="iv">explicar que</div><div class="is" data-uk="пояснити що" data-en="to explain that" data-es="">пояснити що</div></div>
+        <div class="ic"><div class="iv">preguntar si</div><div class="is" data-uk="запитати чи" data-en="to ask if/whether" data-es="">запитати чи</div></div>
+        <div class="ic"><div class="iv">pedir que</div><div class="is" data-uk="попросити щоб" data-en="to ask/request that" data-es="">попросити щоб</div></div>
+        <div class="ic"><div class="iv">ordenar que</div><div class="is" data-uk="наказати щоб" data-en="to order that" data-es="">наказати щоб</div></div>
+        <div class="ic"><div class="iv">afirmar que</div><div class="is" data-uk="стверджувати що" data-en="to state that" data-es="">стверджувати що</div></div>
+        <div class="ic"><div class="iv">añadir que</div><div class="is" data-uk="додати що" data-en="to add that" data-es="">додати що</div></div>
+      </div>
+
+      <div class="warn" data-r="41"><b data-uk="Якщо дієслово введення в ТЕПЕРІШНЬОМУ — часи не змінюються!" data-en="If reporting verb is PRESENT — tenses don't change!" data-es="Si el verbo introductor está en PRESENTE — ¡los tiempos no cambian!">Якщо dijo → dice: часи не змінюються!</b><br>
+        <em>Dice que <b>tiene</b> hambre.</em> <span class="tr2" data-uk="(presente → presente)" data-en="(present → present)" data-es="">(presente → presente)</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /gram -->
+
+<!-- ═══════════ СЛОВНИК ═══════════ -->
+<div id="page-vocab" class="page">
+  <div class="vcat-bar" id="vcatBar"></div>
+  <div class="vcount" id="vcount"></div>
+  <div class="vgrid" id="vgrid"></div>
+</div>
+
+</div><!-- /cnt -->
+
+<nav class="bnav">
+  <button class="bb on" onclick="setTab('times')"><span class="ni">⏰</span data-uk="Часи" data-en="Tenses" data-es="Tiempos">Часи</button>
+  <button class="bb" onclick="setTab('verbs')"><span class="ni">⚡</span data-uk="Дієслова" data-en="Verbs" data-es="Verbos">Дієслова</button>
+  <button class="bb" onclick="setTab('gram')"><span class="ni">🔤</span data-uk="Граматика" data-en="Grammar" data-es="Gramática">Граматика</button>
+  <button class="bb" onclick="setTab('vocab')"><span class="ni">📖</span data-uk="Словник" data-en="Vocab" data-es="Vocabulario">Словник</button>
+</nav>
+
+<script>
+// Spiral holes
+(()=>{const bar=document.getElementById('spiralBar');for(let i=0;i<18;i++){const h=document.createElement('div');h.className='sp-hole';bar.appendChild(h);}})();
+
+// ── VOCAB DATA ──
+const VOCAB={
+  food:[
+    {es:"el pan",uk:"хліб",en:"bread"},{es:"la leche",uk:"молоко",en:"milk"},{es:"el huevo",uk:"яйце",en:"egg"},
+    {es:"la carne",uk:"м'ясо",en:"meat"},{es:"el pollo",uk:"курка",en:"chicken"},{es:"el pescado",uk:"риба",en:"fish"},
+    {es:"la verdura",uk:"овочі",en:"vegetable"},{es:"la fruta",uk:"фрукт",en:"fruit"},{es:"la manzana",uk:"яблуко",en:"apple"},
+    {es:"la naranja",uk:"апельсин",en:"orange"},{es:"el tomate",uk:"помідор",en:"tomato"},{es:"la cebolla",uk:"цибуля",en:"onion"},
+    {es:"el ajo",uk:"часник",en:"garlic"},{es:"la patata",uk:"картопля",en:"potato"},{es:"la zanahoria",uk:"морква",en:"carrot"},
+    {es:"el pimiento",uk:"перець",en:"pepper"},{es:"el arroz",uk:"рис",en:"rice"},{es:"la pasta",uk:"паста",en:"pasta"},
+    {es:"el pan de molde",uk:"хліб тостовий",en:"sliced bread"},{es:"el aceite",uk:"олія",en:"oil"},{es:"la sal",uk:"сіль",en:"salt"},
+    {es:"el azúcar",uk:"цукор",en:"sugar"},{es:"la mantequilla",uk:"масло вершкове",en:"butter"},{es:"el queso",uk:"сир",en:"cheese"},
+    {es:"el jamón",uk:"шинка",en:"ham"},{es:"el helado",uk:"морозиво",en:"ice cream"},{es:"el chocolate",uk:"шоколад",en:"chocolate"},
+    {es:"la galleta",uk:"печиво",en:"cookie"},{es:"el pastel",uk:"тістечко/торт",en:"cake"},{es:"el bocadillo",uk:"бутерброд",en:"sandwich"},
+    {es:"la ensalada",uk:"салат",en:"salad"},{es:"la sopa",uk:"суп",en:"soup"},{es:"el huevo frito",uk:"яєчня",en:"fried egg"},
+    {es:"la tortilla",uk:"омлет іспанський",en:"Spanish omelette"},{es:"la paella",uk:"паелья",en:"paella"},
+  ],
+  drinks:[
+    {es:"el agua",uk:"вода",en:"water"},{es:"el café",uk:"кава",en:"coffee"},{es:"el té",uk:"чай",en:"tea"},
+    {es:"el café con leche",uk:"кава з молоком",en:"coffee with milk"},{es:"el cortado",uk:"кава з крапелькою молока",en:"cortado"},
+    {es:"el vino tinto",uk:"червоне вино",en:"red wine"},{es:"el vino blanco",uk:"біле вино",en:"white wine"},
+    {es:"la cerveza",uk:"пиво",en:"beer"},{es:"el zumo",uk:"сік",en:"juice"},{es:"el zumo de naranja",uk:"апельсиновий сік",en:"orange juice"},
+    {es:"el refresco",uk:"газованка",en:"soda"},{es:"el batido",uk:"молочний коктейль",en:"milkshake"},
+    {es:"la horchata",uk:"гарчата (напій з тигрового горіха)",en:"horchata"},{es:"el agua con gas",uk:"газована вода",en:"sparkling water"},
+  ],
+  transport:[
+    {es:"el coche",uk:"машина",en:"car"},{es:"el autobús",uk:"автобус",en:"bus"},{es:"el metro",uk:"метро",en:"metro"},
+    {es:"el tren",uk:"поїзд",en:"train"},{es:"el avión",uk:"літак",en:"plane"},{es:"el barco",uk:"корабель",en:"ship"},
+    {es:"la bicicleta",uk:"велосипед",en:"bicycle"},{es:"la moto",uk:"мотоцикл",en:"motorcycle"},{es:"el taxi",uk:"таксі",en:"taxi"},
+    {es:"el tranvía",uk:"трамвай",en:"tram"},{es:"el aeropuerto",uk:"аеропорт",en:"airport"},{es:"la estación",uk:"станція/вокзал",en:"station"},
+    {es:"el billete",uk:"квиток",en:"ticket"},{es:"el andén",uk:"перон",en:"platform"},{es:"la parada",uk:"зупинка",en:"stop"},
+    {es:"el semáforo",uk:"світлофор",en:"traffic light"},{es:"la carretera",uk:"шосе",en:"highway"},{es:"el aparcamiento",uk:"парковка",en:"parking"},
+    {es:"el atasco",uk:"затор",en:"traffic jam"},{es:"el cinturón de seguridad",uk:"ремінь безпеки",en:"seatbelt"},
+  ],
+  emotions:[
+    {es:"alegre",uk:"радісний",en:"happy"},{es:"triste",uk:"сумний",en:"sad"},{es:"enfadado/a",uk:"злий/зла",en:"angry"},
+    {es:"asustado/a",uk:"наляканий",en:"scared"},{es:"sorprendido/a",uk:"здивований",en:"surprised"},
+    {es:"emocionado/a",uk:"схвильований",en:"excited"},{es:"aburrido/a",uk:"нудний/скучно",en:"bored"},
+    {es:"nervioso/a",uk:"нервовий",en:"nervous"},{es:"cansado/a",uk:"втомлений",en:"tired"},
+    {es:"orgulloso/a",uk:"гордий",en:"proud"},{es:"celoso/a",uk:"ревнивий",en:"jealous"},
+    {es:"avergonzado/a",uk:"соромиться",en:"ashamed"},{es:"contento/a",uk:"задоволений",en:"content"},
+    {es:"deprimido/a",uk:"пригнічений",en:"depressed"},{es:"enamorado/a",uk:"закоханий",en:"in love"},
+    {es:"relajado/a",uk:"розслаблений",en:"relaxed"},{es:"preocupado/a",uk:"стурбований",en:"worried"},
+    {es:"frustrado/a",uk:"фрустрований",en:"frustrated"},{es:"feliz",uk:"щасливий",en:"happy/joyful"},
+    {es:"tranquilo/a",uk:"спокійний",en:"calm"},
+  ],
+  character:[
+    {es:"amable",uk:"привітний",en:"kind"},{es:"simpático/a",uk:"приємний/милий",en:"nice"},
+    {es:"antipático/a",uk:"неприємний",en:"unpleasant"},{es:"inteligente",uk:"розумний",en:"intelligent"},
+    {es:"trabajador/a",uk:"працьовитий",en:"hardworking"},{es:"perezoso/a",uk:"лінивий",en:"lazy"},
+    {es:"generoso/a",uk:"щедрий",en:"generous"},{es:"egoísta",uk:"егоїст",en:"selfish"},
+    {es:"honesto/a",uk:"чесний",en:"honest"},{es:"tímido/a",uk:"сором'язливий",en:"shy"},
+    {es:"valiente",uk:"сміливий",en:"brave"},{es:"creativo/a",uk:"творчий",en:"creative"},
+    {es:"divertido/a",uk:"веселий/смішний",en:"funny"},{es:"serio/a",uk:"серйозний",en:"serious"},
+    {es:"paciente",uk:"терплячий",en:"patient"},{es:"curioso/a",uk:"допитливий",en:"curious"},
+    {es:"sincero/a",uk:"щирий",en:"sincere"},{es:"responsable",uk:"відповідальний",en:"responsible"},
+    {es:"optimista",uk:"оптиміст",en:"optimist"},{es:"pesimista",uk:"песиміст",en:"pessimist"},
+  ],
+  home:[
+    {es:"la casa",uk:"будинок",en:"house"},{es:"el piso",uk:"квартира",en:"apartment"},{es:"la habitación",uk:"кімната",en:"room"},
+    {es:"el dormitorio",uk:"спальня",en:"bedroom"},{es:"el salón",uk:"вітальня",en:"living room"},{es:"la cocina",uk:"кухня",en:"kitchen"},
+    {es:"el baño",uk:"ванна кімната",en:"bathroom"},{es:"el aseo",uk:"туалет",en:"toilet"},{es:"el balcón",uk:"балкон",en:"balcony"},
+    {es:"el pasillo",uk:"коридор",en:"hallway"},{es:"la ventana",uk:"вікно",en:"window"},{es:"la puerta",uk:"двері",en:"door"},
+    {es:"el sofá",uk:"диван",en:"sofa"},{es:"la cama",uk:"ліжко",en:"bed"},{es:"la mesa",uk:"стіл",en:"table"},
+    {es:"la silla",uk:"стілець",en:"chair"},{es:"el armario",uk:"шафа",en:"wardrobe"},{es:"la nevera",uk:"холодильник",en:"fridge"},
+    {es:"el horno",uk:"духовка",en:"oven"},{es:"la lavadora",uk:"пральна машина",en:"washing machine"},
+    {es:"el microondas",uk:"мікрохвильовка",en:"microwave"},{es:"la lámpara",uk:"лампа",en:"lamp"},
+    {es:"la alfombra",uk:"килим",en:"rug"},{es:"el espejo",uk:"дзеркало",en:"mirror"},
+  ],
+  clothes:[
+    {es:"la ropa",uk:"одяг",en:"clothes"},{es:"la camiseta",uk:"футболка",en:"t-shirt"},{es:"la camisa",uk:"сорочка",en:"shirt"},
+    {es:"el pantalón",uk:"штани",en:"trousers"},{es:"los vaqueros",uk:"джинси",en:"jeans"},{es:"el vestido",uk:"сукня",en:"dress"},
+    {es:"la falda",uk:"спідниця",en:"skirt"},{es:"el abrigo",uk:"пальто",en:"coat"},{es:"la chaqueta",uk:"куртка/піджак",en:"jacket"},
+    {es:"el jersey",uk:"светр",en:"sweater"},{es:"la sudadera",uk:"худі",en:"hoodie"},{es:"los zapatos",uk:"туфлі",en:"shoes"},
+    {es:"las zapatillas",uk:"кросівки",en:"sneakers"},{es:"las botas",uk:"чоботи",en:"boots"},{es:"los calcetines",uk:"шкарпетки",en:"socks"},
+    {es:"la ropa interior",uk:"нижня білизна",en:"underwear"},{es:"el bolso",uk:"сумка",en:"bag"},{es:"la mochila",uk:"рюкзак",en:"backpack"},
+    {es:"el sombrero",uk:"капелюх",en:"hat"},{es:"la gorra",uk:"кепка",en:"cap"},{es:"el cinturón",uk:"пасок",en:"belt"},
+    {es:"los guantes",uk:"рукавиці",en:"gloves"},{es:"la bufanda",uk:"шарф",en:"scarf"},
+  ],
+  family:[
+    {es:"la madre",uk:"мати",en:"mother"},{es:"el padre",uk:"батько",en:"father"},{es:"los padres",uk:"батьки",en:"parents"},
+    {es:"el hermano",uk:"брат",en:"brother"},{es:"la hermana",uk:"сестра",en:"sister"},{es:"los hermanos",uk:"брати та сестри",en:"siblings"},
+    {es:"el hijo",uk:"син",en:"son"},{es:"la hija",uk:"дочка",en:"daughter"},{es:"los hijos",uk:"діти",en:"children"},
+    {es:"el abuelo",uk:"дідусь",en:"grandfather"},{es:"la abuela",uk:"бабуся",en:"grandmother"},{es:"los abuelos",uk:"дідусь і бабуся",en:"grandparents"},
+    {es:"el tío",uk:"дядько",en:"uncle"},{es:"la tía",uk:"тітка",en:"aunt"},{es:"el primo/a",uk:"двоюрідний/-а",en:"cousin"},
+    {es:"el sobrino/a",uk:"племінник/-иця",en:"nephew/niece"},{es:"la pareja",uk:"партнер/пара",en:"partner"},
+    {es:"el marido",uk:"чоловік",en:"husband"},{es:"la mujer/esposa",uk:"дружина",en:"wife"},
+    {es:"el novio",uk:"хлопець/наречений",en:"boyfriend/fiancé"},{es:"la novia",uk:"дівчина/наречена",en:"girlfriend/fiancée"},
+    {es:"el bebé",uk:"немовля",en:"baby"},{es:"el niño/a",uk:"дитина",en:"child"},
+  ],
+  work:[
+    {es:"el trabajo",uk:"робота",en:"work"},{es:"la empresa",uk:"компанія",en:"company"},{es:"la oficina",uk:"офіс",en:"office"},
+    {es:"el jefe/a",uk:"начальник/-иця",en:"boss"},{es:"el empleado/a",uk:"працівник",en:"employee"},{es:"el colega",uk:"колега",en:"colleague"},
+    {es:"la reunión",uk:"нарада/зустріч",en:"meeting"},{es:"el sueldo",uk:"зарплата",en:"salary"},{es:"el contrato",uk:"контракт",en:"contract"},
+    {es:"la entrevista",uk:"співбесіда",en:"interview"},{es:"el ordenador",uk:"комп'ютер",en:"computer"},{es:"el correo electrónico",uk:"імейл",en:"email"},
+    {es:"la clase",uk:"урок/клас",en:"class"},{es:"el examen",uk:"іспит",en:"exam"},{es:"la universidad",uk:"університет",en:"university"},
+    {es:"la carrera",uk:"спеціальність/кар'єра",en:"career"},{es:"el médico/a",uk:"лікар",en:"doctor"},{es:"el abogado/a",uk:"адвокат",en:"lawyer"},
+    {es:"el profesor/a",uk:"викладач",en:"teacher"},{es:"el camarero/a",uk:"офіціант",en:"waiter"},
+  ],
+  city:[
+    {es:"la ciudad",uk:"місто",en:"city"},{es:"el barrio",uk:"район",en:"neighborhood"},{es:"la calle",uk:"вулиця",en:"street"},
+    {es:"la plaza",uk:"площа",en:"square"},{es:"el supermercado",uk:"супермаркет",en:"supermarket"},{es:"la farmacia",uk:"аптека",en:"pharmacy"},
+    {es:"el hospital",uk:"лікарня",en:"hospital"},{es:"el banco",uk:"банк",en:"bank"},{es:"el restaurante",uk:"ресторан",en:"restaurant"},
+    {es:"la tienda",uk:"магазин",en:"shop"},{es:"el mercado",uk:"ринок",en:"market"},{es:"el museo",uk:"музей",en:"museum"},
+    {es:"el parque",uk:"парк",en:"park"},{es:"la iglesia",uk:"церква",en:"church"},{es:"el ayuntamiento",uk:"мерія",en:"town hall"},
+    {es:"la biblioteca",uk:"бібліотека",en:"library"},{es:"el cine",uk:"кінотеатр",en:"cinema"},{es:"el teatro",uk:"театр",en:"theatre"},
+    {es:"la playa",uk:"пляж",en:"beach"},{es:"el centro comercial",uk:"торговий центр",en:"shopping center"},
+  ],
+  nature:[
+    {es:"el mar",uk:"море",en:"sea"},{es:"la montaña",uk:"гора",en:"mountain"},{es:"el río",uk:"річка",en:"river"},
+    {es:"el lago",uk:"озеро",en:"lake"},{es:"el bosque",uk:"ліс",en:"forest"},{es:"el campo",uk:"поле/село",en:"field/countryside"},
+    {es:"el desierto",uk:"пустеля",en:"desert"},{es:"la isla",uk:"острів",en:"island"},{es:"el volcán",uk:"вулкан",en:"volcano"},
+    {es:"el sol",uk:"сонце",en:"sun"},{es:"la luna",uk:"місяць",en:"moon"},{es:"las estrellas",uk:"зірки",en:"stars"},
+    {es:"la lluvia",uk:"дощ",en:"rain"},{es:"la nieve",uk:"сніг",en:"snow"},{es:"el viento",uk:"вітер",en:"wind"},
+    {es:"el cielo",uk:"небо",en:"sky"},{es:"la nube",uk:"хмара",en:"cloud"},{es:"la tormenta",uk:"гроза",en:"storm"},
+    {es:"la flor",uk:"квітка",en:"flower"},{es:"el árbol",uk:"дерево",en:"tree"},{es:"el perro",uk:"собака",en:"dog"},
+    {es:"el gato",uk:"кіт",en:"cat"},{es:"el pájaro",uk:"птах",en:"bird"},{es:"el pez",uk:"риба (тварина)",en:"fish (animal)"},
+  ],
+  body:[
+    {es:"la cabeza",uk:"голова",en:"head"},{es:"el pelo",uk:"волосся",en:"hair"},{es:"los ojos",uk:"очі",en:"eyes"},
+    {es:"la nariz",uk:"ніс",en:"nose"},{es:"la boca",uk:"рот",en:"mouth"},{es:"los labios",uk:"губи",en:"lips"},
+    {es:"las orejas",uk:"вуха",en:"ears"},{es:"el cuello",uk:"шия",en:"neck"},{es:"los hombros",uk:"плечі",en:"shoulders"},
+    {es:"el pecho",uk:"груди",en:"chest"},{es:"el brazo",uk:"рука (рука)",en:"arm"},{es:"el codo",uk:"лікоть",en:"elbow"},
+    {es:"la mano",uk:"рука (кисть)",en:"hand"},{es:"el dedo",uk:"палець",en:"finger"},{es:"la pierna",uk:"нога",en:"leg"},
+    {es:"la rodilla",uk:"коліно",en:"knee"},{es:"el pie",uk:"ступня",en:"foot"},{es:"el dedo del pie",uk:"палець ноги",en:"toe"},
+    {es:"el corazón",uk:"серце",en:"heart"},{es:"el estómago",uk:"шлунок",en:"stomach"},{es:"la espalda",uk:"спина",en:"back"},
+    {es:"el cerebro",uk:"мозок",en:"brain"},
+  ],
+  numbers:[
+    {es:"uno",uk:"один",en:"one"},{es:"dos",uk:"два",en:"two"},{es:"tres",uk:"три",en:"three"},
+    {es:"cuatro",uk:"чотири",en:"four"},{es:"cinco",uk:"п'ять",en:"five"},{es:"seis",uk:"шість",en:"six"},
+    {es:"siete",uk:"сім",en:"seven"},{es:"ocho",uk:"вісім",en:"eight"},{es:"nueve",uk:"дев'ять",en:"nine"},
+    {es:"diez",uk:"десять",en:"ten"},{es:"once",uk:"одинадцять",en:"eleven"},{es:"doce",uk:"дванадцять",en:"twelve"},
+    {es:"quince",uk:"п'ятнадцять",en:"fifteen"},{es:"veinte",uk:"двадцять",en:"twenty"},{es:"treinta",uk:"тридцять",en:"thirty"},
+    {es:"cuarenta",uk:"сорок",en:"forty"},{es:"cincuenta",uk:"п'ятдесят",en:"fifty"},{es:"cien",uk:"сто",en:"hundred"},
+    {es:"mil",uk:"тисяча",en:"thousand"},{es:"primero/a",uk:"перший/а",en:"first"},{es:"segundo/a",uk:"другий/а",en:"second"},
+    {es:"tercero/a",uk:"третій/а",en:"third"},{es:"último/a",uk:"останній/я",en:"last"},
+  ],
+  time:[
+    {es:"el lunes",uk:"понеділок",en:"Monday"},{es:"el martes",uk:"вівторок",en:"Tuesday"},{es:"el miércoles",uk:"середа",en:"Wednesday"},
+    {es:"el jueves",uk:"четвер",en:"Thursday"},{es:"el viernes",uk:"п'ятниця",en:"Friday"},{es:"el sábado",uk:"субота",en:"Saturday"},
+    {es:"el domingo",uk:"неділя",en:"Sunday"},{es:"enero",uk:"січень",en:"January"},{es:"febrero",uk:"лютий",en:"February"},
+    {es:"marzo",uk:"березень",en:"March"},{es:"abril",uk:"квітень",en:"April"},{es:"mayo",uk:"травень",en:"May"},
+    {es:"junio",uk:"червень",en:"June"},{es:"julio",uk:"липень",en:"July"},{es:"agosto",uk:"серпень",en:"August"},
+    {es:"septiembre",uk:"вересень",en:"September"},{es:"octubre",uk:"жовтень",en:"October"},{es:"noviembre",uk:"листопад",en:"November"},
+    {es:"diciembre",uk:"грудень",en:"December"},{es:"la primavera",uk:"весна",en:"spring"},{es:"el verano",uk:"літо",en:"summer"},
+    {es:"el otoño",uk:"осінь",en:"autumn"},{es:"el invierno",uk:"зима",en:"winter"},{es:"hoy",uk:"сьогодні",en:"today"},
+    {es:"ayer",uk:"вчора",en:"yesterday"},{es:"mañana",uk:"завтра",en:"tomorrow"},{es:"ahora",uk:"зараз",en:"now"},
+    {es:"pronto",uk:"скоро",en:"soon"},{es:"tarde",uk:"пізно",en:"late"},{es:"temprano",uk:"рано",en:"early"},
+  ],
+  health:[
+    {es:"el médico/a",uk:"лікар",en:"doctor"},{es:"el hospital",uk:"лікарня",en:"hospital"},{es:"la farmacia",uk:"аптека",en:"pharmacy"},
+    {es:"el medicamento",uk:"ліки",en:"medicine"},{es:"la receta",uk:"рецепт",en:"prescription"},{es:"el dolor",uk:"біль",en:"pain"},
+    {es:"la fiebre",uk:"температура/жар",en:"fever"},{es:"la tos",uk:"кашель",en:"cough"},{es:"el resfriado",uk:"застуда",en:"cold"},
+    {es:"la gripe",uk:"грип",en:"flu"},{es:"el dolor de cabeza",uk:"головний біль",en:"headache"},{es:"el dolor de estómago",uk:"біль у животі",en:"stomachache"},
+    {es:"la alergia",uk:"алергія",en:"allergy"},{es:"la herida",uk:"рана",en:"wound"},{es:"el vendaje",uk:"пов'язка",en:"bandage"},
+    {es:"la pastilla",uk:"таблетка",en:"pill"},{es:"el jarabe",uk:"сироп",en:"syrup"},{es:"la inyección",uk:"укол",en:"injection"},
+    {es:"el seguro médico",uk:"медична страховка",en:"health insurance"},{es:"la cita médica",uk:"запис до лікаря",en:"doctor's appointment"},
+  ],
+  weather:[
+    {es:"hace calor",uk:"спекотно",en:"it's hot"},{es:"hace frío",uk:"холодно",en:"it's cold"},{es:"hace sol",uk:"сонячно",en:"it's sunny"},
+    {es:"hace viento",uk:"вітряно",en:"it's windy"},{es:"está nublado",uk:"хмарно",en:"it's cloudy"},{es:"llueve",uk:"іде дощ",en:"it's raining"},
+    {es:"nieva",uk:"іде сніг",en:"it's snowing"},{es:"hay niebla",uk:"туман",en:"it's foggy"},{es:"hay tormenta",uk:"гроза",en:"there's a storm"},
+    {es:"la temperatura",uk:"температура",en:"temperature"},{es:"el grado",uk:"градус",en:"degree"},{es:"el pronóstico",uk:"прогноз",en:"forecast"},
+    {es:"la humedad",uk:"вологість",en:"humidity"},{es:"el arco iris",uk:"веселка",en:"rainbow"},
+  ],
+  colors:[
+    {es:"rojo/a",uk:"червоний",en:"red"},{es:"azul",uk:"синій/блакитний",en:"blue"},{es:"verde",uk:"зелений",en:"green"},
+    {es:"amarillo/a",uk:"жовтий",en:"yellow"},{es:"naranja",uk:"оранжевий",en:"orange"},{es:"morado/a",uk:"фіолетовий",en:"purple"},
+    {es:"rosa",uk:"рожевий",en:"pink"},{es:"negro/a",uk:"чорний",en:"black"},{es:"blanco/a",uk:"білий",en:"white"},
+    {es:"gris",uk:"сірий",en:"grey"},{es:"marrón",uk:"коричневий",en:"brown"},{es:"beige",uk:"бежевий",en:"beige"},
+    {es:"dorado/a",uk:"золотий",en:"golden"},{es:"plateado/a",uk:"срібний",en:"silver"},{es:"turquesa",uk:"бірюзовий",en:"turquoise"},
+  ],
+  travel:[
+    {es:"el viaje",uk:"подорож",en:"trip"},{es:"el turista",uk:"турист",en:"tourist"},{es:"el hotel",uk:"готель",en:"hotel"},
+    {es:"la habitación doble",uk:"двомісний номер",en:"double room"},{es:"la reserva",uk:"бронювання",en:"reservation"},
+    {es:"el pasaporte",uk:"паспорт",en:"passport"},{es:"la maleta",uk:"валіза",en:"suitcase"},{es:"el vuelo",uk:"рейс",en:"flight"},
+    {es:"la salida",uk:"виліт/виїзд",en:"departure"},{es:"la llegada",uk:"прибуття",en:"arrival"},{es:"la aduana",uk:"митниця",en:"customs"},
+    {es:"la tarjeta de embarque",uk:"посадковий талон",en:"boarding pass"},{es:"el mapa",uk:"карта",en:"map"},
+    {es:"la guía",uk:"путівник/гід",en:"guide"},{es:"el souvenir",uk:"сувенір",en:"souvenir"},
+    {es:"cambiar dinero",uk:"обміняти гроші",en:"exchange money"},{es:"el alojamiento",uk:"проживання",en:"accommodation"},
+  ],
+  sports:[
+    {es:"el fútbol",uk:"футбол",en:"football"},{es:"el baloncesto",uk:"баскетбол",en:"basketball"},{es:"el tenis",uk:"теніс",en:"tennis"},
+    {es:"la natación",uk:"плавання",en:"swimming"},{es:"correr",uk:"бігати",en:"to run"},{es:"el ciclismo",uk:"велоспорт",en:"cycling"},
+    {es:"el yoga",uk:"йога",en:"yoga"},{es:"el gimnasio",uk:"спортзал",en:"gym"},{es:"el partido",uk:"матч",en:"match/game"},
+    {es:"el equipo",uk:"команда",en:"team"},{es:"ganar",uk:"вигравати",en:"to win"},{es:"perder",uk:"програвати",en:"to lose"},
+    {es:"entrenar",uk:"тренуватися",en:"to train"},{es:"la afición",uk:"хобі/уподобання",en:"hobby/passion"},
+    {es:"el cine",uk:"кіно",en:"cinema"},{es:"leer",uk:"читати",en:"to read"},{es:"cocinar",uk:"готувати",en:"to cook"},
+    {es:"viajar",uk:"подорожувати",en:"to travel"},{es:"bailar",uk:"танцювати",en:"to dance"},{es:"escuchar música",uk:"слухати музику",en:"listen to music"},
+  ],
+  verbs:[
+    {es:"ser",uk:"бути (постійно)",en:"to be (perm.)"},{es:"estar",uk:"бути (тимчасово)",en:"to be (temp.)"},
+    {es:"tener",uk:"мати",en:"to have"},{es:"ir",uk:"йти/їхати",en:"to go"},{es:"venir",uk:"приходити",en:"to come"},
+    {es:"hacer",uk:"робити",en:"to do/make"},{es:"decir",uk:"казати",en:"to say"},{es:"poder",uk:"могти",en:"can/to be able"},
+    {es:"querer",uk:"хотіти",en:"to want"},{es:"saber",uk:"знати",en:"to know"},{es:"ver",uk:"бачити",en:"to see"},
+    {es:"dar",uk:"давати",en:"to give"},{es:"poner",uk:"класти",en:"to put"},{es:"salir",uk:"виходити",en:"to leave"},
+    {es:"llegar",uk:"приїжджати/приходити",en:"to arrive"},{es:"hablar",uk:"говорити",en:"to speak"},
+    {es:"comer",uk:"їсти",en:"to eat"},{es:"beber",uk:"пити",en:"to drink"},{es:"dormir",uk:"спати",en:"to sleep"},
+    {es:"trabajar",uk:"працювати",en:"to work"},{es:"estudiar",uk:"вчитися",en:"to study"},{es:"vivir",uk:"жити",en:"to live"},
+    {es:"llamar",uk:"телефонувати",en:"to call"},{es:"comprar",uk:"купувати",en:"to buy"},{es:"vender",uk:"продавати",en:"to sell"},
+    {es:"abrir",uk:"відкривати",en:"to open"},{es:"cerrar",uk:"закривати",en:"to close"},{es:"buscar",uk:"шукати",en:"to search"},
+    {es:"encontrar",uk:"знаходити",en:"to find"},{es:"pensar",uk:"думати",en:"to think"},
+  ],
+  adjectives:[
+    {es:"grande",uk:"великий",en:"big"},{es:"pequeño/a",uk:"маленький",en:"small"},{es:"nuevo/a",uk:"новий",en:"new"},
+    {es:"viejo/a",uk:"старий",en:"old"},{es:"bueno/a",uk:"хороший",en:"good"},{es:"malo/a",uk:"поганий",en:"bad"},
+    {es:"bonito/a",uk:"гарний",en:"pretty"},{es:"feo/a",uk:"потворний",en:"ugly"},{es:"rápido/a",uk:"швидкий",en:"fast"},
+    {es:"lento/a",uk:"повільний",en:"slow"},{es:"fácil",uk:"легкий",en:"easy"},{es:"difícil",uk:"важкий/складний",en:"difficult"},
+    {es:"caro/a",uk:"дорогий",en:"expensive"},{es:"barato/a",uk:"дешевий",en:"cheap"},{es:"lleno/a",uk:"повний",en:"full"},
+    {es:"vacío/a",uk:"порожній",en:"empty"},{es:"caliente",uk:"гарячий",en:"hot"},{es:"frío/a",uk:"холодний",en:"cold"},
+    {es:"limpio/a",uk:"чистий",en:"clean"},{es:"sucio/a",uk:"брудний",en:"dirty"},{es:"seguro/a",uk:"безпечний",en:"safe"},
+    {es:"peligroso/a",uk:"небезпечний",en:"dangerous"},{es:"interesante",uk:"цікавий",en:"interesting"},
+    {es:"aburrido/a",uk:"нудний",en:"boring"},{es:"delicioso/a",uk:"смачний",en:"delicious"},
+  ],
+  restaurant:[
+    {es:"la mesa",uk:"стіл",en:"table"},{es:"la carta / el menú",uk:"меню",en:"menu"},{es:"el camarero/a",uk:"офіціант",en:"waiter"},
+    {es:"el primer plato",uk:"перша страва",en:"starter"},{es:"el segundo plato",uk:"основна страва",en:"main course"},
+    {es:"el postre",uk:"десерт",en:"dessert"},{es:"la cuenta",uk:"рахунок",en:"bill"},{es:"la propina",uk:"чайові",en:"tip"},
+    {es:"reservar una mesa",uk:"забронювати столик",en:"reserve a table"},{es:"¿Qué recomienda?",uk:"Що порадите?",en:"What do you recommend?"},
+    {es:"Para mí...",uk:"Для мене...",en:"For me..."},{es:"La cuenta, por favor",uk:"Рахунок, будь ласка",en:"The bill, please"},
+    {es:"¿Está incluido el servicio?",uk:"Обслуговування включене?",en:"Is service included?"},{es:"sin gluten",uk:"без глютену",en:"gluten-free"},
+    {es:"vegetariano/a",uk:"вегетаріанський",en:"vegetarian"},{es:"para llevar",uk:"з собою",en:"to go/takeaway"},
+  ],
+};
+
+const CATS={
+  all:"🔍 Все",food:"🍕 Їжа",drinks:"🥤 Напої",transport:"🚗 Транспорт",
+  emotions:"😊 Емоції",character:"👤 Характер",home:"🏠 Дім",clothes:"👔 Одяг",
+  family:"👨‍👩‍👧 Сім'я",work:"💼 Робота",city:"🏙️ Місто",nature:"🌿 Природа",
+  body:"💪 Тіло",numbers:"🔢 Числа",time:"📅 Час/Дні",health:"🏥 Здоров'я",
+  weather:"🌤️ Погода",colors:"🎨 Кольори",travel:"✈️ Подорожі",sports:"⚽ Спорт/Хобі",
+  verbs:"🔤 Дієслова",adjectives:"✨ Прикметники",restaurant:"🍽️ Ресторан",
+};
+const CARD_COLORS=['','pink','blue','green','purple','','pink','blue','green','purple','','pink','blue','green','purple','','pink','blue','green','purple','','pink','blue'];
+
+let lang='uk', curTab='times', curCat='all', curMode='ind';
+
+// ── SPIRAL ──
+(()=>{const b=document.getElementById('spiralBar');for(let i=0;i<20;i++){const h=document.createElement('div');h.className='sp-hole';b.appendChild(h);}})();
+
+// ── VOCAB ──
+function buildCats(){
+  const bar=document.getElementById('vcatBar');
+  bar.innerHTML='';
+  Object.entries(CATS).forEach(([k,v])=>{
+    const b=document.createElement('button');
+    b.className='vcbtn'+(k===curCat?' on':'');
+    b.textContent=v;
+    b.onclick=()=>{curCat=k;renderVocab();document.querySelectorAll('.vcbtn').forEach(x=>x.classList.remove('on'));b.classList.add('on');};
+    bar.appendChild(b);
+  });
+}
+function renderVocab(){
+  const grid=document.getElementById('vgrid');
+  const cnt=document.getElementById('vcount');
+  let words=[];
+  if(curCat==='all')Object.values(VOCAB).forEach(a=>words.push(...a));
+  else words=VOCAB[curCat]||[];
+  const q=document.getElementById('si').value.trim().toLowerCase();
+  if(curTab==='vocab'&&q){
+    words=words.filter(w=>(w.es+w.uk+w.en).toLowerCase().includes(q));
+  }
+  const wlbl={uk:'слів',en:'words',es:'palabras'};
+  const hint={uk:'натисни — побачиш переклад',en:'tap to flip',es:'toca para voltear'};
+  cnt.textContent=words.length+' '+(wlbl[lang]||'слів')+' · '+(hint[lang]||hint.uk);
+  grid.innerHTML='';
+  words.forEach((w,i)=>{
+    const d=document.createElement('div');
+    const ci=Math.floor(i/2)%CARD_COLORS.length;
+    // front: Spanish + current-lang translation; flip: the third option
+    let front, back;
+    if(lang==='en'){front=w.en; back=w.uk;}
+    else if(lang==='es'){front=w.uk; back=w.en;}
+    else {front=w.uk; back=w.en;}
+    d.className='vc '+(CARD_COLORS[ci]||'');
+    d.innerHTML=`<div class="ves">${w.es}</div><div class="vuk">${front}</div><div class="ven">${back}</div>`;
+    d.onclick=()=>d.classList.toggle('flip');
+    grid.appendChild(d);
+  });
+}
+
+
+// ── RULE TRANSLATIONS ──
+const RULES={
+1:{uk:`<b>haber</b> + participio (-ado / -ido)<br><em>He comido pizza hoy.</em> <span class="tr2">— Я сьогодні їв піцу.</span>`,en:`<b>haber</b> + participle (-ado / -ido)<br><em>He comido pizza hoy.</em> <span class="tr2">— I ate pizza today.</span>`,es:`<b>haber</b> + participio (-ado / -ido)<br><em>He comido pizza hoy.</em>`},
+2:{uk:`Закінчення без наголосу: <b>-e / -iste / -o / -imos / -isteis / -ieron</b>`,en:`Unstressed endings: <b>-e / -iste / -o / -imos / -isteis / -ieron</b>`,es:`Terminaciones sin acento: <b>-e / -iste / -o / -imos / -isteis / -ieron</b>`},
+3:{uk:`⚠️ IR і SER — однакові форми!`,en:`⚠️ IR and SER have identical forms!`,es:`⚠️ IR y SER tienen formas idénticas`},
+4:{uk:`<em>Cuando llegué, ella ya <b>había salido</b>.</em><br><span class="tr2">— Коли я прийшов, вона вже пішла.</span>`,en:`<em>Cuando llegué, ella ya <b>había salido</b>.</em><br><span class="tr2">— When I arrived, she had already left.</span>`,es:`<em>Cuando llegué, ella ya <b>había salido</b>.</em>`},
+5:{uk:`Інфінітив + <b>-é / -ás / -á / -emos / -éis / -án</b>`,en:`Infinitive + <b>-é / -ás / -á / -emos / -éis / -án</b>`,es:`Infinitivo + <b>-é / -ás / -á / -emos / -éis / -án</b>`},
+6:{uk:`<em>Cuando llegues, ya <b>habré terminado</b>.</em><br><span class="tr2">— Коли прийдеш, я вже закінчу.</span>`,en:`<em>Cuando llegues, ya <b>habré terminado</b>.</em><br><span class="tr2">— When you arrive, I'll have finished.</span>`,es:`<em>Cuando llegues, ya <b>habré terminado</b>.</em>`},
+7:{uk:`Інфінітив + <b>-ía / -ías / -ía / -íamos / -íais / -ían</b><br>Ті ж нерег. основи що й у Futuro: tendr-, vendr-, pondr-...`,en:`Infinitive + <b>-ía / -ías / -ía / -íamos / -íais / -ían</b><br>Same irregular stems as Futuro: tendr-, vendr-, pondr-...`,es:`Infinitivo + <b>-ía / -ías / -ía / -íamos / -íais / -ían</b><br>Mismas raíces irregulares que Futuro: tendr-, vendr-, pondr-...`},
+8:{uk:`<em>Si tuviera dinero, <b>viajaría</b>.</em> <span class="tr2">— Якби мала гроші, подорожувала б.</span><br><em>¿<b>Podrías</b> ayudarme?</em> <span class="tr2">— ввічливе прохання</span>`,en:`<em>Si tuviera dinero, <b>viajaría</b>.</em> <span class="tr2">— If I had money, I'd travel.</span><br><em>¿<b>Podrías</b> ayudarme?</em> <span class="tr2">— polite request</span>`,es:`<em>Si tuviera dinero, <b>viajaría</b>.</em><br><em>¿<b>Podrías</b> ayudarme?</em> <span class="tr2">— petición cortés</span>`},
+9:{uk:`<em>Si <b>hubiera estudiado</b>, habría aprobado.</em><br><span class="tr2">— Якби вчила, склала б.</span>`,en:`<em>Si <b>hubiera estudiado</b>, habría aprobado.</em><br><span class="tr2">— If I had studied, I would have passed.</span>`,es:`<em>Si <b>hubiera estudiado</b>, habría aprobado.</em>`},
+10:{uk:`Основа = yo presente без <b>-o</b> + нові закінчення<br>AR → <b>-E</b> | ER/IR → <b>-A</b>`,en:`Stem = yo presente minus <b>-o</b> + new endings<br>AR → <b>-E</b> | ER/IR → <b>-A</b>`,es:`Raíz = yo presente sin <b>-o</b> + nuevas terminaciones<br>AR → <b>-E</b> | ER/IR → <b>-A</b>`},
+11:{uk:`⚠️ <b>cuando + майбутнє → суб'юнтів!</b><br><em>Cuando <b>llegues</b>, llámame.</em> <span class="tr2">— Коли приїдеш (субхунтів)</span><br><em>No sé cuándo llega.</em> <span class="tr2">— не знаю коли (індікатів)</span>`,en:`⚠️ <b>cuando + future action → subjunctive!</b><br><em>Cuando <b>llegues</b>, llámame.</em> <span class="tr2">— When you arrive (subj.)</span><br><em>No sé cuándo llega.</em> <span class="tr2">— I don't know when (indicative)</span>`,es:`⚠️ <b>cuando + futuro → ¡subjuntivo!</b><br><em>Cuando <b>llegues</b>, llámame.</em> <span class="tr2">— acción futura (subj.)</span><br><em>No sé cuándo llega.</em> <span class="tr2">— (indicativo)</span>`},
+12:{uk:`Основа = 3 ос. мн. Indefinido без <b>-ron</b><br>hablaron → <b>hablara-</b> | comieron → <b>comiera-</b>`,en:`Stem = 3rd pl. Indefinido without <b>-ron</b><br>hablaron → <b>hablara-</b> | comieron → <b>comiera-</b>`,es:`Raíz = 3ª pl. Indefinido sin <b>-ron</b><br>hablaron → <b>hablara-</b> | comieron → <b>comiera-</b>`},
+13:{uk:`<em>Ojalá <b>haya llegado</b> a tiempo.</em> <span class="tr2">— Хай вже приїхав вчасно.</span><br><em>Si <b>hubiera estudiado</b>, habría aprobado.</em> <span class="tr2">— Якби вчила, склала б.</span>`,en:`<em>Ojalá <b>haya llegado</b> a tiempo.</em> <span class="tr2">— I hope he has arrived.</span><br><em>Si <b>hubiera estudiado</b>, habría aprobado.</em> <span class="tr2">— If I had studied, would have passed.</span>`,es:`<em>Ojalá <b>haya llegado</b> a tiempo.</em><br><em>Si <b>hubiera estudiado</b>, habría aprobado.</em>`},
+14:{uk:`<b>tú (+):</b> = él/ella Presente → habl<span class="hi">a</span> · com<span class="hi">e</span> · viv<span class="hi">e</span>`,en:`<b>tú (+):</b> = él/ella Present tense → habl<span class="hi">a</span> · com<span class="hi">e</span> · viv<span class="hi">e</span>`,es:`<b>tú (+):</b> = forma de él/ella en Presente → habl<span class="hi">a</span> · com<span class="hi">e</span> · viv<span class="hi">e</span>`},
+15:{uk:`<b>tú (–):</b> no + Presente Subjuntivo<br>no habl<span class="hi">es</span> · no com<span class="hi">as</span>`,en:`<b>tú (–):</b> no + Present Subjunctive<br>no habl<span class="hi">es</span> · no com<span class="hi">as</span>`,es:`<b>tú (–):</b> no + Presente Subjuntivo<br>no habl<span class="hi">es</span> · no com<span class="hi">as</span>`},
+16:{uk:`<b>Структура:</b> займенник + дієслово<br><em>Me voy a <b>duchar</b>.</em> = <em>Voy a <b>ducharme</b>.</em>`,en:`<b>Structure:</b> pronoun + verb<br><em>Me voy a <b>duchar</b>.</em> = <em>Voy a <b>ducharme</b>.</em>`,es:`<b>Estructura:</b> pronombre + verbo<br><em>Me voy a <b>duchar</b>.</em> = <em>Voy a <b>ducharme</b>.</em>`},
+17:{uk:`-AR → <b>-ando</b> · -ER/-IR → <b>-iendo</b>`,en:`-AR → <b>-ando</b> · -ER/-IR → <b>-iendo</b>`,es:`-AR → <b>-ando</b> · -ER/-IR → <b>-iendo</b>`},
+18:{uk:`<b>Se pasiva</b> — іменник є суб'єктом:<br><em>Se <b>vende</b> un piso.</em> <span class="tr2">— Продається квартира.</span><br><em>Se <b>venden</b> pisos.</em> <span class="tr2">— Продаються квартири.</span>`,en:`<b>Se pasiva</b> — noun is the subject:<br><em>Se <b>vende</b> un piso.</em> <span class="tr2">— An apartment is for sale.</span><br><em>Se <b>venden</b> pisos.</em> <span class="tr2">— Apartments for sale.</span>`,es:`<b>Se pasiva</b> — el sustantivo es el sujeto:<br><em>Se <b>vende</b> un piso.</em><br><em>Se <b>venden</b> pisos.</em>`},
+19:{uk:`<b>Se impersonal:</b><br><em>Se <b>habla</b> español aquí.</em> <span class="tr2">— Тут розмовляють іспанською.</span>`,en:`<b>Se impersonal:</b><br><em>Se <b>habla</b> español aquí.</em> <span class="tr2">— Spanish is spoken here.</span>`,es:`<b>Se impersonal:</b><br><em>Se <b>habla</b> español aquí.</em>`},
+20:{uk:`<b>Одне слово — різне значення:</b><br><em>Es <b>aburrido</b>.</em> <span class="tr2">— Він нудний (завжди).</span><br><em>Está <b>aburrido</b>.</em> <span class="tr2">— Йому зараз нудно.</span>`,en:`<b>Same word — different meaning:</b><br><em>Es <b>aburrido</b>.</em> <span class="tr2">— He is boring (trait).</span><br><em>Está <b>aburrido</b>.</em> <span class="tr2">— He is bored (right now).</span>`,es:`<b>Una palabra, distinto significado:</b><br><em>Es <b>aburrido</b>.</em> <span class="tr2">— carácter permanente.</span><br><em>Está <b>aburrido</b>.</em> <span class="tr2">— estado temporal.</span>`},
+21:{uk:`<b>Структура:</b> me/te/le/nos/os/les + <b>gusta</b> (sg) / <b>gustan</b> (pl)`,en:`<b>Structure:</b> me/te/le/nos/os/les + <b>gusta</b> (sg) / <b>gustan</b> (pl)`,es:`<b>Estructura:</b> me/te/le/nos/os/les + <b>gusta</b> (sg) / <b>gustan</b> (pl)`},
+22:{uk:`<b>a + el = <span class="hi">al</span></b> · <b>de + el = <span class="hi">del</span></b><br>Voy <b>al</b> mercado. · Vengo <b>del</b> trabajo.`,en:`<b>a + el = <span class="hi">al</span></b> · <b>de + el = <span class="hi">del</span></b><br>Voy <b>al</b> mercado. · Vengo <b>del</b> trabajo.`,es:`<b>a + el = <span class="hi">al</span></b> · <b>de + el = <span class="hi">del</span></b><br>Voy <b>al</b> mercado. · Vengo <b>del</b> trabajo.`},
+23:{uk:`<b>el agua</b> (жін. рід, але el щоб уникнути 'la a-')<br>el agua · el águila · el aula · el área`,en:`<b>el agua</b> (feminine, but el to avoid 'la a-' sound)<br>el agua · el águila · el aula · el área`,es:`<b>el agua</b> (femenino, pero el para evitar 'la a-')<br>el agua · el águila · el aula · el área`},
+24:{uk:`<b>Qué vs Cuál:</b><br><em>¿<b>Qué</b> es un ordenador?</em> <span class="tr2">— визначення</span><br><em>¿<b>Cuál</b> es tu número?</em> <span class="tr2">— вибір</span>`,en:`<b>Qué vs Cuál:</b><br><em>¿<b>Qué</b> es un ordenador?</em> <span class="tr2">— definition</span><br><em>¿<b>Cuál</b> es tu número?</em> <span class="tr2">— selection</span>`,es:`<b>Qué vs Cuál:</b><br><em>¿<b>Qué</b> es un ordenador?</em> <span class="tr2">— definición</span><br><em>¿<b>Cuál</b> es tu número?</em> <span class="tr2">— elección</span>`},
+25:{uk:`Якщо заперечне слово <b>перед</b> дієсловом → no не потрібне:<br><em><b>Nunca</b> como pizza.</em> = <em>No como pizza <b>nunca</b>.</em>`,en:`If negative word comes <b>before</b> the verb → no is not needed:<br><em><b>Nunca</b> como pizza.</em> = <em>No como pizza <b>nunca</b>.</em>`,es:`Si la palabra negativa va <b>antes</b> del verbo → no no hace falta:<br><em><b>Nunca</b> como pizza.</em> = <em>No como pizza <b>nunca</b>.</em>`},
+26:{uk:`<b>más</b> + прикм. + <b>que</b> → більш ніж<br><b>menos</b> + прикм. + <b>que</b> → менш ніж<br><b>tan</b> + прикм. + <b>como</b> → так само як<br><b>el/la más</b> + прикм. (+de) → найбільш`,en:`<b>más</b> + adj. + <b>que</b> → more than<br><b>menos</b> + adj. + <b>que</b> → less than<br><b>tan</b> + adj. + <b>como</b> → as ... as<br><b>el/la más</b> + adj. (+de) → the most`,es:`<b>más</b> + adj. + <b>que</b> → comparativo superior<br><b>menos</b> + adj. + <b>que</b> → comparativo inferior<br><b>tan</b> + adj. + <b>como</b> → igualdad<br><b>el/la más</b> + adj. → superlativo`},
+27:{uk:`<b>EN</b>: en coche · en tren · en avión · en metro · en autobús · en barco · en bici · en moto<br><b>A</b> (власна сила): <b>a pie</b> <span class="tr2">пішки</span> · <b>a caballo</b> <span class="tr2">верхи</span> · <b>a nado</b> <span class="tr2">вплав</span>`,en:`<b>EN</b>: en coche · en tren · en avión · en metro · en autobús · en barco · en bici · en moto<br><b>A</b> (own power): <b>a pie</b> <span class="tr2">on foot</span> · <b>a caballo</b> <span class="tr2">on horseback</span> · <b>a nado</b> <span class="tr2">by swimming</span>`,es:`<b>EN</b>: en coche · en tren · en avión · en metro · en autobús · en barco · en bici · en moto<br><b>A</b> (fuerza propia): <b>a pie</b> · <b>a caballo</b> · <b>a nado</b>`},
+28:{uk:`<em>Lo hice <b>por</b> ti.</em> <span class="tr2">— Через тебе / заради тебе.</span><br><em>Lo hice <b>para</b> ti.</em> <span class="tr2">— Для тебе.</span>`,en:`<em>Lo hice <b>por</b> ti.</em> <span class="tr2">— I did it because of you.</span><br><em>Lo hice <b>para</b> ti.</em> <span class="tr2">— I did it for you.</span>`,es:`<em>Lo hice <b>por</b> ti.</em> <span class="tr2">— causa/motivo.</span><br><em>Lo hice <b>para</b> ti.</em> <span class="tr2">— destinatario.</span>`},
+'7b':{uk:`Ті ж основи що й у <b>Futuro</b> + закінчення <b>-ía/-ías/-ía/-íamos/-íais/-ían</b>`,en:`Same stems as <b>Futuro</b> + endings <b>-ía/-ías/-ía/-íamos/-íais/-ían</b>`,es:`Mismas raíces que <b>Futuro</b> + terminaciones <b>-ía/-ías/-ía/-íamos/-íais/-ían</b>`},
+'29':{uk:`<b>le/les → se</b> перед lo/la/los/las!<br><em>Le doy el libro.</em> → <em>Se lo doy.</em> <span class="tr2">— Я даю йому це.</span>`,en:`<b>le/les → se</b> before lo/la/los/las!<br><em>Le doy el libro.</em> → <em>Se lo doy.</em> <span class="tr2">— I give it to him.</span>`,es:`<b>le/les → se</b> antes de lo/la/los/las.<br><em>Se lo doy.</em>`},
+'30':{uk:`<em><b>Te lo</b> digo mañana.</em> <span class="tr2">— Скажу тобі це завтра.</span><br><em><b>Me la</b> has dado.</em> <span class="tr2">— Ти мені це дала.</span>`,en:`<em><b>Te lo</b> digo mañana.</em> <span class="tr2">— I'll tell you tomorrow.</span><br><em><b>Me la</b> has dado.</em> <span class="tr2">— You gave it to me.</span>`,es:`<em><b>Te lo</b> digo mañana.</em><br><em><b>Me la</b> has dado.</em>`},
+'31':{uk:`<em>Voy a dár<b>telo</b>.</em> = <em><b>Te lo</b> voy a dar.</em><br>Обидві позиції правильні з інфінітивом/герундієм.`,en:`<em>Voy a dár<b>telo</b>.</em> = <em><b>Te lo</b> voy a dar.</em><br>Both positions correct with infinitive/gerund.`,es:`<em>Voy a dár<b>telo</b>.</em> = <em><b>Te lo</b> voy a dar.</em>`},
+'32':{uk:`<b>Пряма пасива:</b> ser + participio (узгоджується!)<br><em>Las casas fueron <b>construidas</b>.</em>`,en:`<b>Direct passive:</b> ser + participle (agrees!)<br><em>Las casas fueron <b>construidas</b>.</em>`,es:`<b>Pasiva:</b> ser + participio (concuerda)<br><em>Las casas fueron <b>construidas</b>.</em>`},
+'33':{uk:`<em>Se <b>construyó</b> la casa.</em> — sg.<br><em>Se <b>construyeron</b> las casas.</em> — pl.`,en:`<em>Se <b>construyó</b> la casa.</em> — sg.<br><em>Se <b>construyeron</b> las casas.</em> — pl.`,es:`<em>Se <b>construyó</b> la casa.</em><br><em>Se <b>construyeron</b> las casas.</em>`},
+'34':{uk:`<b>ser + por</b> → важливо ХТО: <em>fue escrita por Lorca</em><br><b>se</b> → виконавець невідомий: <em>se vende</em>`,en:`<b>ser + por</b> → WHO matters: <em>fue escrita por Lorca</em><br><b>se</b> → doer unknown: <em>se vende</em>`,es:`<b>ser + por</b> → importa el agente<br><b>se</b> → agente desconocido`},
+'35':{uk:`<b>Тип 1 (реальна):</b> Si tengo → iré<br>Якщо матиму час, піду.`,en:`<b>Type 1 (real):</b> Si tengo → iré<br>If I have time, I'll go.`,es:`<b>Tipo 1 (real):</b> Si tengo → iré`},
+'36':{uk:`<b>Тип 2 (нереальна зараз):</b> Si tuviera → viajaría<br>Якби мала гроші, подорожувала б.`,en:`<b>Type 2 (unreal now):</b> Si tuviera → viajaría<br>If I had money, I would travel.`,es:`<b>Tipo 2 (irreal presente):</b> Si tuviera → viajaría`},
+'37':{uk:`<b>Тип 3 (нереальна в минулому):</b> Si hubiera estudiado → habría aprobado<br>Якби вчила, склала б.`,en:`<b>Type 3 (unreal past):</b> Si hubiera estudiado → habría aprobado<br>If I had studied, I would have passed.`,es:`<b>Tipo 3 (irreal pasado):</b> Si hubiera estudiado → habría aprobado`},
+'38':{uk:`<em>"<b>Tengo</b> hambre."</em><br>→ Dijo que <b>tenía</b> hambre.<br><span class="tr2">— Він сказав, що голодний.</span>`,en:`<em>"<b>Tengo</b> hambre."</em><br>→ Dijo que <b>tenía</b> hambre.<br><span class="tr2">— He said he was hungry.</span>`,es:`<em>"<b>Tengo</b> hambre."</em><br>→ Dijo que <b>tenía</b> hambre.`},
+'39':{uk:`<em>"<b>Iré</b> mañana."</em><br>→ Dijo que <b>iría</b> al día siguiente.<br><span class="tr2">— Він сказав, що прийде наступного дня.</span>`,en:`<em>"<b>Iré</b> mañana."</em><br>→ Dijo que <b>iría</b> al día siguiente.<br><span class="tr2">— He said he would come the next day.</span>`,es:`<em>"<b>Iré</b> mañana."</em><br>→ Dijo que <b>iría</b> al día siguiente.`},
+'40':{uk:`<em>"<b>Ven</b> aquí."</em><br>→ Me dijo que <b>fuera</b> allí.<br><span class="tr2">— Він сказав мені прийти туди.</span>`,en:`<em>"<b>Ven</b> aquí."</em><br>→ Me dijo que <b>fuera</b> allí.<br><span class="tr2">— He told me to go there.</span>`,es:`<em>"<b>Ven</b> aquí."</em><br>→ Me dijo que <b>fuera</b> allí.`},
+'41':{uk:`<b>Якщо dijo → dice: часи не змінюються!</b><br><em>Dice que <b>tiene</b> hambre.</em> (presente → presente)`,en:`<b>If dijo → dice: tenses don't shift!</b><br><em>Dice que <b>tiene</b> hambre.</em> (present stays present)`,es:`<b>Si dijo → dice: ¡los tiempos no cambian!</b><br><em>Dice que <b>tiene</b> hambre.</em>`}
+};
+function applyRules(){
+  document.querySelectorAll('[data-r]').forEach(el=>{
+    const id=el.getAttribute('data-r');
+    if(RULES[id]){
+      const t=RULES[id][lang]||RULES[id].uk;
+      el.innerHTML=t;
+    }
+  });
+}
+
+// ── LANG ──
+function setLang(l){
+  lang=l;
+  document.querySelectorAll('.lbtn').forEach(b=>b.classList.remove('on'));
+  const map={uk:'УКР',en:'ENG',es:'ESP'};
+  document.querySelectorAll('.lbtn').forEach(b=>{if(b.textContent===map[l])b.classList.add('on');});
+  document.querySelectorAll('[data-uk]').forEach(el=>{
+    const raw=el.getAttribute('data-'+l);
+    const v=(raw!==null&&raw!=='')?raw:el.getAttribute('data-uk');
+    if(v!==null){
+      // use innerHTML if value contains HTML tags, else textContent
+      if(v.includes('<'))el.innerHTML=v;
+      else el.textContent=v;
+    }
+  });
+  applyRules();
+  if(curTab==='vocab')renderVocab();
+}
+
+// ── TABS ──
+function setTab(n){
+  curTab=n;
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.getElementById('page-'+n).classList.add('on');
+  document.getElementById('page-search').classList.remove('on');
+  const names=['times','verbs','gram','vocab'];
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('on',names[i]===n));
+  document.querySelectorAll('.bb').forEach((b,i)=>b.classList.toggle('on',names[i]===n));
+  document.getElementById('sc').style.display='none';
+  document.getElementById('si').value='';
+  if(n==='vocab'){buildCats();renderVocab();}
+}
+
+// ── TENSE MODE ──
+function setMode(m){
+  curMode=m;
+  document.querySelectorAll('.snbtn').forEach((b,i)=>{
+    const modes=['ind','cond','subj','imp'];
+    b.classList.toggle('on',modes[i]===m);
+  });
+  document.querySelectorAll('.card[data-mode]').forEach(c=>{
+    c.classList.toggle('visible',c.getAttribute('data-mode')===m);
+    if(c.getAttribute('data-mode')===m) c.classList.remove('open');
+  });
+}
+
+// ── ACCORDION ──
+function tog(head){head.closest('.card').classList.toggle('open');}
+function togSub(h){h.closest('.sacc').classList.toggle('open');}
+
+// ── SEARCH ──
+function doSearch(q){
+  document.getElementById('sc').style.display=q?'block':'none';
+  if(!q.trim()){
+    document.getElementById('page-search').classList.remove('on');
+    document.getElementById('page-'+curTab).classList.add('on');
+    return;
+  }
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.getElementById('page-search').classList.add('on');
+  const ql=q.toLowerCase().trim();
+  const results=[];
+  document.querySelectorAll('.card[data-k]').forEach(card=>{
+    const dk = (card.getAttribute('data-k')||'').toLowerCase();
+    const title = (card.querySelector('.ctit')||{textContent:''}).textContent.toLowerCase();
+    const body = (card.querySelector('.cb')||{textContent:''}).textContent.toLowerCase();
+    if(dk.includes(ql)||title.includes(ql)||body.includes(ql)){
+      const clone = card.cloneNode(true);
+      // Force show regardless of data-mode
+      clone.style.display='block';
+      clone.classList.add('visible');
+      // Remove old onclick and re-attach properly
+      const head = clone.querySelector('.ch');
+      if(head){
+        head.removeAttribute('onclick');
+        head.addEventListener('click', ()=>{
+          clone.classList.toggle('open');
+          const chev = head.querySelector('.chev');
+          if(chev) chev.style.transform = clone.classList.contains('open')?'rotate(180deg)':'';
+        });
+      }
+      // Re-attach sub-accordion toggles
+      clone.querySelectorAll('.sh').forEach(sh=>{
+        sh.removeAttribute('onclick');
+        sh.addEventListener('click', ()=>{
+          sh.closest('.sacc').classList.toggle('open');
+          const sch = sh.querySelector('.sch');
+          if(sch) sch.style.transform = sh.closest('.sacc').classList.contains('open')?'rotate(180deg)':'';
+        });
+      });
+      hlCard(clone, ql);
+      results.push(clone);
+    }
+  });
+  let vWords=[];
+  Object.values(VOCAB).forEach(a=>vWords.push(...a));
+  const mv=vWords.filter(w=>(w.es+w.uk+w.en).toLowerCase().includes(ql));
+  const container=document.getElementById('sres');
+  container.innerHTML='';
+  if(results.length){
+    const lbl=document.createElement('div');
+    lbl.style.cssText='font-family:Caveat,cursive;font-size:15px;color:var(--mut);margin-bottom:8px';
+    lbl.textContent='📚 Граматика ('+results.length+')';
+    container.appendChild(lbl);
+    results.forEach(card=>container.appendChild(card));
+  }
+  if(mv.length){
+    const sec=document.createElement('div');
+    const lbl=document.createElement('div');
+    lbl.style.cssText='font-family:Caveat,cursive;font-size:18px;font-weight:700;color:var(--red);margin:12px 0 8px';
+    lbl.textContent='📖 Словник ('+mv.length+')';
+    sec.appendChild(lbl);
+    const g=document.createElement('div');
+    g.className='vgrid';
+    mv.forEach((w,i)=>{
+      const d=document.createElement('div');
+      d.className='vc '+(CARD_COLORS[i%CARD_COLORS.length]||'');
+      d.innerHTML=`<div class="ves">${w.es}</div><div class="vuk" style="color:var(--pencil)">${w.uk}</div><div class="ven">${w.en}</div>`;
+      d.onclick=()=>d.classList.toggle('flip');
+      g.appendChild(d);
+    });
+    sec.appendChild(g);
+    container.appendChild(sec);
+  }
+  if(!results.length&&!mv.length) container.innerHTML='<div class="no-res">🤷 Нічого не знайдено для «'+q+'»</div>';
+}
+function hlCard(el, q){
+  // Only highlight in text leaves, skip script/style
+  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+    acceptNode: n => (n.parentNode.tagName==='SCRIPT'||n.parentNode.tagName==='STYLE') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT
+  });
+  const nodes=[];
+  while(walker.nextNode()) nodes.push(walker.currentNode);
+  nodes.forEach(n=>{
+    const idx=n.textContent.toLowerCase().indexOf(q);
+    if(idx>=0 && n.parentNode){
+      const frag=document.createDocumentFragment();
+      frag.appendChild(document.createTextNode(n.textContent.slice(0,idx)));
+      const mk=document.createElement('mark');
+      mk.textContent=n.textContent.slice(idx,idx+q.length);
+      frag.appendChild(mk);
+      frag.appendChild(document.createTextNode(n.textContent.slice(idx+q.length)));
+      n.parentNode.replaceChild(frag,n);
+    }
+  });
+}
+
+function clrS(){
+  document.getElementById('si').value='';
+  document.getElementById('sc').style.display='none';
+  document.getElementById('page-search').classList.remove('on');
+  document.getElementById('page-'+curTab).classList.add('on');
+}
+
+// init
+setMode('ind');
+applyRules();
+</script>
+</body>
+</html></div>
+      </div>
+      
