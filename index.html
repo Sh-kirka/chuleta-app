@@ -2,14 +2,8 @@
 <html lang="uk">
 <head>
 <meta charset="UTF-8">
-   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#c0392b">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Chuleta">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Chuleta</title>
+<title>Chuleta 🌶️</title>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -63,7 +57,7 @@ body{
 .lbtn{
   padding:4px 10px;border-radius:16px;border:none;cursor:pointer;
   font-family:'Caveat',cursive;font-size:14px;font-weight:600;
-  background:transparent;color:var(--pencil);transition:al .2s;
+  background:transparent;color:var(--pencil);transition:all .2s;
 }
 .lbtn.on{background:var(--red);color:#fff}
 
@@ -119,7 +113,7 @@ body{
 .card{
   background:var(--card);border-radius:4px 12px 12px 4px;
   margin-bottom:10px;box-shadow:var(--sh);
-  border-left:4px solid var(--margin);overflow:hidden;
+  border-left:4px solid var(--margin);overflow:clip;
   position:relative;
 }
 .card::before{
@@ -263,15 +257,14 @@ mark{background:var(--hl);border-radius:2px;padding:0 1px}
 
 
 /* ── SUB-ACCORDION ── */
-.sacc{border:1.5px dashed var(--border);border-radius:10px;margin-top:12px;background:var(--paper)}
-.sh{padding:10px 13px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:var(--pa
-  per2);border-radius:10px 10px 0 0}
+.sacc{border:1.5px dashed var(--border);border-radius:10px;margin-top:12px;overflow:hidden;background:var(--paper)}
+.sh{padding:10px 13px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:var(--paper2)}
 .sh-title{font-family:'Caveat',cursive;font-size:17px;font-weight:700;color:var(--orange)}
 .sch{color:var(--mut);font-size:13px;transition:transform .3s}
 .sacc.open .sch{transform:rotate(180deg)}
-.sb{display:none;padding:12px 13px;border-top:1px dashed
-  var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch}
+.sb{display:none;padding:12px 13px;border-top:1px dashed var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch}
 .sacc.open .sb{display:block}
+.sb .ct{width:max-content;min-width:100%}
 .sc-tag{display:inline-block;background:var(--hl);border-radius:3px;padding:2px 8px;font-family:'Caveat',cursive;font-size:14px;font-weight:600;margin:3px 3px 3px 0;border-bottom:2px solid #e6c800}
 
 /* tense mode cards */
@@ -1312,8 +1305,6 @@ const CARD_COLORS=['','pink','blue','green','purple','','pink','blue','green','p
 
 let lang='uk', curTab='times', curCat='all', curMode='ind';
 
-// ── SPIRAL ──
-(()=>{const b=document.getElementById('spiralBar');for(let i=0;i<20;i++){const h=document.createElement('div');h.className='sp-hole';b.appendChild(h);}})();
 
 // ── VOCAB ──
 function buildCats(){
@@ -1570,12 +1561,6 @@ function clrS(){
 setMode('ind');
 applyRules();
 </script>
-   <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/chuleta-app/sw.js');
-    }
-  </script>
 </body>
 </html></div>
       </div>
-      
