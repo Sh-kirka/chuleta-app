@@ -1568,6 +1568,11 @@ function clrS(){
 setMode('ind');
 applyRules();
 </script>
+   <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/chuleta-app/sw.js');
+    }
+  </script>
 </body>
 </html></div>
       </div>
