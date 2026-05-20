@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "name": "Chuleta",
+    "slug": "chuleta-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#C0392B"
+      }
+    },
+    "web": {}
+  }
+}
